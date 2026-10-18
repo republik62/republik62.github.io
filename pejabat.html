@@ -1,0 +1,1404 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Republik +62 Jilid 2 — Dari OKB Jadi Pejabat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e6ecee; --fg:#14202b; --muted:#5b6b78; --panel:#ffffff; --line:#c9d3d8;
+  --felt:#0e6b5c; --felt2:#0b5a4d; --tile:#fbfbf7; --tileline:#9fb3ad;
+  --merah:#d81e2c; --emas:#f2b705; --good:#1c8a4a; --bad:#c62828;
+  --takdir:#5b3fa8; --musibah:#d4550f; --shadow:0 8px 28px rgba(10,30,40,.16);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1a1f; --fg:#e8eef0; --muted:#93a4ae; --panel:#18252c; --line:#2b3c45;
+    --felt:#0b4d43; --felt2:#083d35; --tile:#1d2c33; --tileline:#35504a; --shadow:0 8px 28px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1a1f; --fg:#e8eef0; --muted:#93a4ae; --panel:#18252c; --line:#2b3c45;
+  --felt:#0b4d43; --felt2:#083d35; --tile:#1d2c33; --tileline:#35504a; --shadow:0 8px 28px rgba(0,0,0,.45);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.45}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:10px;padding:.5em .9em;font-weight:700}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,input:focus-visible{outline:3px solid var(--emas);outline-offset:2px}
+button.primary{background:var(--merah);border-color:var(--merah);color:#fff}
+button.ghost{background:transparent}
+h1,h2,h3{font-family:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif;margin:0}
+
+.app{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:16px;padding:12px;max-width:1440px;margin:0 auto}
+@media (max-width:920px){.app{grid-template-columns:1fr}}
+.board-wrap{display:flex;justify-content:center;align-items:flex-start}
+
+/* ---------- BOARD ---------- */
+.board{position:relative;width:min(100%, calc(100vh - 24px));width:min(100%, calc(100dvh - 24px));aspect-ratio:1;container-type:size;
+  display:grid;grid-template-columns:1.35fr repeat(8,1fr) 1.35fr;grid-template-rows:1.35fr repeat(8,1fr) 1.35fr;
+  background:var(--felt);border:.8cqw solid #5a3a1e;border-radius:1.6cqw;box-shadow:var(--shadow);gap:.25cqw;padding:.25cqw}
+.tile{position:relative;background:var(--tile);display:flex;overflow:hidden;font-size:clamp(6px,1.3cqw,12.5px);line-height:1.12;cursor:pointer;border-radius:.4cqw}
+.tile:hover{filter:brightness(1.04)}
+.tile .band{flex:0 0 22%}
+.side-b{flex-direction:column}.side-t{flex-direction:column-reverse}.side-l{flex-direction:row-reverse}.side-r{flex-direction:row}
+.side-l .band,.side-r .band{flex-basis:15%}
+.tile .body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.3cqw;gap:.15cqw;min-width:0}
+.tile .nm{font-weight:700;overflow-wrap:anywhere}
+.tile .pr{color:var(--muted);font-size:.9em;font-weight:600}
+.tile .ic{font-size:2em;line-height:1}
+.tile .lv{font-size:.95em;letter-spacing:-.1em;min-height:0}
+.tt-takdir{background:color-mix(in srgb,var(--takdir) 16%,var(--tile))}
+.tt-musibah{background:color-mix(in srgb,var(--musibah) 16%,var(--tile))}
+.tt-tax{background:color-mix(in srgb,var(--muted) 12%,var(--tile))}
+.corner .ic{font-size:3.2em}
+.corner .nm{font-size:1.15em;font-family:"Bricolage Grotesque",sans-serif}
+.corner .sub{font-size:.9em;color:var(--muted)}
+.k-go{background:color-mix(in srgb,var(--good) 20%,var(--tile))}
+.k-jail{background:repeating-linear-gradient(90deg,var(--tile) 0 1.1cqw,color-mix(in srgb,var(--fg) 14%,var(--tile)) 1.1cqw 1.4cqw)}
+.k-bansos{background:color-mix(in srgb,var(--emas) 26%,var(--tile))}
+.k-gojail{background:color-mix(in srgb,var(--merah) 20%,var(--tile))}
+.tokens{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center;gap:.25cqw;pointer-events:none;z-index:2}
+.token{width:3.3cqw;height:3.3cqw;border-radius:50%;background:#fff;border:.45cqw solid var(--c);display:grid;place-items:center;font-size:1.85cqw;box-shadow:0 .3cqw .6cqw rgba(0,0,0,.4);animation:hop .2s ease-out}
+.token.active{outline:.3cqw solid var(--emas);outline-offset:.15cqw}
+@keyframes hop{0%{transform:translateY(-35%) scale(1.1)}100%{transform:none}}
+
+/* ---------- CENTER ---------- */
+.center{grid-area:2/2/10/10;background:radial-gradient(circle at 50% 45%,var(--felt) 0,var(--felt2) 100%);color:#f5f7f2;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:2cqw 2.4cqw;gap:1cqw;border-radius:.6cqw;overflow:hidden}
+.ctop{width:100%;display:flex;flex-direction:column;align-items:center;gap:.8cqw}
+.stamp{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:5.4cqw;line-height:.95;color:#fff;border:.5cqw solid #fff;padding:.5cqw 2cqw .8cqw;border-radius:1cqw;transform:rotate(-3deg);background:var(--merah);box-shadow:0 .5cqw 0 rgba(0,0,0,.25);letter-spacing:-.02em;text-align:center}
+.stamp small{display:block;font-size:.3em;font-weight:700;letter-spacing:0;margin-top:.3cqw;font-family:"Plus Jakarta Sans",sans-serif}
+.ticker{width:100%;overflow:hidden;white-space:nowrap;background:rgba(0,0,0,.28);border-radius:.6cqw;font-size:clamp(9px,1.55cqw,14px);padding:.45cqw 0}
+.ticker span{display:inline-block;padding-left:100%;animation:marquee 70s linear infinite}
+@keyframes marquee{to{transform:translateX(-100%)}}
+.cmid{display:flex;align-items:center;justify-content:center;gap:3cqw;width:100%}
+.deck{width:13cqw;height:18cqw;border-radius:1.2cqw;border:.4cqw solid rgba(255,255,255,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6cqw;text-align:center;font-size:clamp(8px,1.45cqw,13px);font-weight:800;box-shadow:.5cqw .5cqw 0 rgba(0,0,0,.25), 1cqw 1cqw 0 rgba(0,0,0,.12)}
+.deck div{font-size:4cqw}
+.deck.takdir{background:var(--takdir);transform:rotate(-7deg)}
+.deck.musibah{background:var(--musibah);transform:rotate(7deg)}
+.deck.flash{animation:flash .6s ease-out}
+@keyframes flash{50%{filter:brightness(1.5);scale:1.08}}
+.dicewrap{display:flex;flex-direction:column;align-items:center;gap:1cqw}
+.dice{display:flex;gap:3cqw;perspective:60cqw;padding:1cqw}
+.die{--d:8.5cqw;width:var(--d);height:var(--d);position:relative;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.15,.85,.25,1)}
+.face{position:absolute;inset:0;background:#fffdf8;border:1px solid #d9d2c3;border-radius:18%;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:13%;box-shadow:inset 0 0 1.4cqw rgba(0,0,0,.18)}
+.pip{width:72%;height:72%;border-radius:50%;background:#1b1b1b;place-self:center}
+.pip.red{background:var(--merah)}
+.f1{transform:translateZ(calc(var(--d)/2))}
+.f6{transform:rotateY(180deg) translateZ(calc(var(--d)/2))}
+.f3{transform:rotateY(90deg) translateZ(calc(var(--d)/2))}
+.f4{transform:rotateY(-90deg) translateZ(calc(var(--d)/2))}
+.f5{transform:rotateX(90deg) translateZ(calc(var(--d)/2))}
+.f2{transform:rotateX(-90deg) translateZ(calc(var(--d)/2))}
+.sum{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:3cqw;min-height:1em}
+.cbot{width:100%;display:flex;flex-direction:column;align-items:center;gap:1cqw}
+.status{text-align:center;font-size:clamp(10px,1.7cqw,15px)}
+.turnchip{display:inline-block;background:var(--pc);color:#fff;font-weight:800;padding:.2em .7em;border-radius:99px;border:2px solid #fff}
+.jailtag{font-weight:700}
+.hint{opacity:.85;margin-top:.3em}
+.controls{display:flex;flex-wrap:wrap;gap:.8cqw;justify-content:center;min-height:2.4em}
+.controls button{font-size:clamp(11px,1.75cqw,15px);padding:.55em 1em}
+.controls button.ghost{color:#fff;border-color:rgba(255,255,255,.55)}
+.thinking{font-weight:700;opacity:.9;font-size:clamp(10px,1.7cqw,15px);padding:.5em}
+.meta{display:flex;gap:2.5cqw;font-size:clamp(9px,1.5cqw,13px);opacity:.9;flex-wrap:wrap;justify-content:center}
+
+/* ---------- SIDE ---------- */
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (min-width:921px){.side{position:sticky;top:12px;max-height:calc(100dvh - 24px);overflow:auto;padding-right:4px}}
+.sidehead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sidehead h2,.side>h2{font-size:1.25rem}
+.sidehead div{display:flex;gap:6px}
+.pcard{background:var(--panel);border-radius:14px;padding:12px 12px 10px;border-left:6px solid var(--pc);box-shadow:0 2px 8px rgba(10,30,40,.07);margin-bottom:10px;transition:transform .2s}
+.pcard.active{box-shadow:0 0 0 2px var(--pc),0 6px 18px rgba(10,30,40,.14)}
+.pcard.dead{opacity:.5;filter:grayscale(.8)}
+.ph{display:flex;align-items:center;gap:10px}
+.pav{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:color-mix(in srgb,var(--pc) 18%,var(--panel));border:3px solid var(--pc);flex:none}
+.pname{font-weight:800}
+.tag{font-size:.7em;background:var(--muted);color:var(--panel);padding:1px 6px;border-radius:5px;margin-left:4px;vertical-align:2px}
+.psub{font-size:.8em;color:var(--muted)}
+.pcash{margin-left:auto;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.15rem;white-space:nowrap}
+.pmeta{font-size:.82em;color:var(--muted);margin:6px 0}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.chip{min-width:18px;height:18px;border-radius:4px;display:inline-grid;place-items:center;font-size:10px;font-weight:800;color:#fff;padding:0 3px;border:1px solid rgba(0,0,0,.2)}
+.chip.n{background:var(--line);color:var(--fg)}
+.notes-tg{font-size:.78em;padding:3px 8px;border-radius:7px}
+.notes{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.note{position:relative;width:62px;height:32px;border-radius:4px;color:#fff;display:flex;align-items:center;justify-content:center;gap:2px;font-weight:800;font-size:12px;box-shadow:2px 2px 0 rgba(0,0,0,.18), 4px 4px 0 rgba(0,0,0,.08);border:1px solid rgba(255,255,255,.35)}
+.note::before{content:"";position:absolute;inset:3px;border:1px dashed rgba(255,255,255,.45);border-radius:2px}
+.note small{font-size:8px;font-weight:600}
+.note b{position:absolute;top:-7px;right:-6px;background:var(--fg);color:var(--panel);font-size:10px;border-radius:99px;padding:0 5px}
+.log{list-style:none;margin:0;padding:0;font-size:.85em;background:var(--panel);border-radius:14px;max-height:340px;overflow:auto;min-height:120px}
+.log:empty::before{content:"Belum ada kabar. Kejadian permainan akan muncul di sini.";display:block;padding:12px;color:var(--muted)}
+.log li.fresh{animation:freshin 1.6s ease-out}
+@keyframes freshin{0%{background:color-mix(in srgb,var(--emas) 40%,var(--panel))}100%{background:transparent}}
+.lastnews{width:100%;max-width:62cqw;background:rgba(0,0,0,.3);border-radius:.8cqw;padding:.6cqw 1.2cqw;font-size:clamp(10px,1.55cqw,14px);text-align:center;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:1.4em}
+.lastnews:empty{display:none}
+.lastnews b{color:#fff!important;text-shadow:0 0 6px rgba(0,0,0,.4)}
+@media (min-width:921px){
+  .side{overflow:hidden}
+  .side>*{flex:none}
+  #players{flex:0 1 auto;overflow:auto;min-height:140px}
+  .side>.log{flex:1 1 240px;min-height:200px;max-height:none}
+}
+.log li{padding:7px 12px;border-bottom:1px solid var(--line)}
+.log li:last-child{border:0}
+.log li.sep{background:color-mix(in srgb,var(--fg) 5%,var(--panel));font-weight:700;color:var(--muted)}
+
+/* ---------- OVERLAYS ---------- */
+#toasts{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:6px;z-index:80;pointer-events:none;width:min(420px,92vw)}
+.toast{background:var(--fg);color:var(--panel);padding:9px 14px;border-radius:10px;font-weight:600;box-shadow:var(--shadow);animation:tin .25s ease-out;font-size:.9em}
+.toast.good{background:var(--good);color:#fff}.toast.bad{background:var(--bad);color:#fff}
+.toast.out{opacity:0;transition:opacity .35s}
+@keyframes tin{from{transform:translateY(-10px);opacity:0}}
+.float{position:fixed;z-index:70;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.1rem;pointer-events:none;animation:floatup 1.3s ease-out forwards;text-shadow:0 1px 0 var(--panel)}
+@keyframes floatup{to{transform:translateY(-36px);opacity:0}}
+.overlay{position:fixed;inset:0;background:rgba(5,15,20,.6);display:grid;place-items:center;z-index:50;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));overflow:auto;animation:fadein .2s}
+@keyframes fadein{from{opacity:0}}
+.sheet{background:var(--panel);border-radius:18px;max-width:620px;width:100%;max-height:calc(100dvh - 32px);overflow:auto;padding:22px;box-shadow:var(--shadow)}
+.sheet h3{margin:18px 0 8px;font-size:1.05rem}
+.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.cardstage{display:flex;flex-direction:column;align-items:center;gap:14px}
+.card3d{width:min(320px,86vw);aspect-ratio:5/7;perspective:1200px}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.3,.7,.3,1)}
+.card-inner.flipped{transform:rotateY(180deg)}
+.cface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.4);border:6px solid #fff}
+.cback{background:var(--dc);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.6rem;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 12px,transparent 12px 24px)}
+.cback div{font-size:4rem}
+.cfront{transform:rotateY(180deg);background:#fffdf8;color:#1b1b1b;display:flex;flex-direction:column}
+.chead{background:var(--dc);color:#fff;padding:14px 16px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.cbody{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:10px}
+.cbody h2{font-size:1.45rem;line-height:1.1}
+.cbody p{margin:0;font-size:.95rem}
+.eff{margin-top:auto;align-self:flex-start;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.25rem;padding:6px 12px;border-radius:10px;background:#eee}
+.eff.pos{background:#d9f2e2;color:#11663a}.eff.neg{background:#fbe0e0;color:#a31d1d}
+.deed{width:min(340px,92vw);background:#fffdf8;color:#1b1b1b;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.4);border:5px solid #fff}
+.deed-h{padding:14px 16px;color:#fff;text-align:center}
+.deed-h small{display:block;font-size:.72rem;opacity:.9}
+.deed-h h2{font-size:1.4rem;line-height:1.1;margin-top:4px}
+.deed-b{padding:14px 16px}
+.deed-b .flav{font-style:italic;color:#555;font-size:.88rem;margin:0 0 10px}
+.deed table{width:100%;border-collapse:collapse;font-size:.88rem}
+.deed td{padding:4px 0;border-bottom:1px dashed #ddd}
+.deed td:last-child{text-align:right;font-weight:700}
+.deed .owner{margin-top:10px;font-weight:700;font-size:.9rem}
+.deed .actions{padding:0 16px 16px;margin-top:0}
+.deed button{background:#fff;color:#1b1b1b;border-color:#ccc}
+.deed button.primary{background:var(--merah);color:#fff;border-color:var(--merah)}
+
+/* setup */
+.setup .hero{display:flex;gap:16px;align-items:center;margin-bottom:6px}
+.setup .stampbig{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.2rem;line-height:.95;color:#fff;background:var(--merah);border:4px solid #fff;outline:3px solid var(--merah);padding:6px 14px 10px;border-radius:12px;transform:rotate(-4deg);flex:none}
+.setup .stampbig small{display:block;font-size:.85rem;font-family:"Plus Jakarta Sans",sans-serif;font-weight:700}
+.setup p.lead{margin:0;color:var(--muted);font-size:.92rem}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.slot{border:2px solid var(--line);border-left:6px solid var(--pc);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.slot.off{opacity:.65}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{flex:1;font-size:.8rem;padding:6px 6px;border-radius:8px}
+.seg button.on{background:var(--fg);color:var(--panel);border-color:var(--fg)}
+.slot input{font:inherit;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%}
+.chars{display:flex;flex-wrap:wrap;gap:4px}
+.chars button{font-size:1.2rem;padding:3px 6px;border-radius:8px}
+.chars button.on{border-color:var(--pc);box-shadow:0 0 0 2px var(--pc)}
+.charname{font-size:.82rem;color:var(--muted)}
+.err{color:var(--bad);font-weight:700;min-height:1.2em;margin:8px 0 0}
+.mlist{display:flex;flex-direction:column;gap:8px}
+.mrow{display:flex;align-items:center;gap:10px;padding:8px;border:1px solid var(--line);border-radius:10px;flex-wrap:wrap}
+.sw{width:14px;height:34px;border-radius:4px;flex:none}
+.mrow .mi{flex:1;min-width:140px}
+.mrow .mi small{display:block;color:var(--muted)}
+.mrow button{font-size:.8rem;padding:6px 9px}
+.rank{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.rank div{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;border:1px solid var(--line)}
+.rank .pos{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.4rem;width:28px}
+.rank .ttl{font-size:.82rem;color:var(--muted)}
+.rules p,.rules li{font-size:.92rem}
+@media (prefers-reduced-motion:reduce){
+  .die,.card-inner{transition-duration:.01s}
+  .ticker span{animation:none;padding-left:0;white-space:normal}
+  .token,.toast,.float,.deck.flash{animation:none}
+}
+
+/* ---------- STUDIO ---------- */
+.sheet.studio{max-width:1080px;padding:18px 20px}
+.studio-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.studio-top h2{font-size:1.4rem}
+.savestat{font-size:.8rem;color:var(--muted);margin-left:auto}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 12px;border-bottom:2px solid var(--line);padding-bottom:8px}
+.tabs button{font-size:.88rem}
+.tabs button.on{background:var(--fg);color:var(--panel);border-color:var(--fg)}
+.intro{color:var(--muted);font-size:.88rem;margin:0 0 12px;max-width:72ch}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.srow{border:1px solid var(--line);border-radius:10px;margin-bottom:6px;overflow:hidden;background:var(--panel)}
+.srow.open{border-color:var(--fg)}
+.shead{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border:0;border-radius:0;background:transparent;padding:8px 12px;font-weight:600}
+.shead .idx{width:24px;color:var(--muted);font-size:.8rem;flex:none}
+.shead .sw{width:10px;height:24px;border-radius:3px;flex:none;background:var(--line)}
+.shead .ttl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shead .meta{margin-left:auto;color:var(--muted);font-size:.82em;font-weight:500;text-align:right;flex:none;max-width:45%}
+.shead .off{opacity:.5}
+.sbody{padding:12px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--fg) 3%,var(--panel))}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 12px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:.85rem}
+.fld .l{font-weight:600}
+.fld input,.fld select,.fld textarea{font:inherit;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);width:100%}
+.fld input[type=color]{padding:2px;height:36px}
+.fld textarea{min-height:70px;resize:vertical}
+.fld small{color:var(--muted)}
+.fld.chk{flex-direction:row;align-items:center;gap:8px}
+.fld.chk input{width:18px;height:18px;flex:none}
+.fld.full{grid-column:1/-1}
+.secttl{grid-column:1/-1;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1rem;margin-top:10px;padding-top:8px;border-top:1px solid var(--line)}
+.secttl:first-child{border:0;margin-top:0;padding-top:0}
+.rowacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rowacts button{font-size:.82rem}
+.danger{color:var(--bad);border-color:var(--bad)}
+.note-i{font-size:.85rem;color:var(--muted);background:color-mix(in srgb,var(--emas) 14%,var(--panel));border-radius:8px;padding:8px 10px;margin:0 0 10px}
+.preset-grid{display:grid;grid-template-columns:minmax(200px,280px) 1fr;gap:16px;align-items:start}
+@media (max-width:760px){.preset-grid{grid-template-columns:1fr}}
+.plist button{display:block;width:100%;text-align:left;margin-bottom:6px;font-weight:600;padding:9px 11px}
+.plist button small{display:block;font-weight:500;color:var(--muted);font-size:.78rem;margin-top:2px}
+.plist button.sel{border-color:var(--fg);box-shadow:0 0 0 2px var(--fg)}
+.badge{font-size:.7rem;background:var(--good);color:#fff;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.presets button{text-align:left;font-weight:500;padding:10px 12px}
+.presets button b{display:block}
+.presets button small{display:block;color:var(--muted);font-size:.78rem;margin-top:3px;line-height:1.35}
+.presets button.on{border-color:var(--merah);box-shadow:0 0 0 2px var(--merah)}
+.rsum{font-size:.84rem;color:var(--muted);margin:8px 0 0}
+.iobox textarea{width:100%;min-height:160px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.stats div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.85rem}
+.stats b{display:block;font-size:1.2rem;font-family:"Bricolage Grotesque",sans-serif}
+.idle{background:var(--panel);border-radius:14px;padding:14px;color:var(--muted);font-size:.9rem}
+.tt-elect{background:color-mix(in srgb,var(--emas) 30%,var(--tile))}
+.rankline{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:.84em}
+.rankline .rk{font-weight:800;background:color-mix(in srgb,var(--pc) 16%,var(--panel));border-radius:99px;padding:2px 9px}
+.rankline .vt{color:var(--muted);align-self:center}
+.ladder{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.lstep{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.lstep .lic{font-size:1.8rem;line-height:1}
+.lstep small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.whos{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.who{font-size:.78rem;font-weight:700;border:2px solid var(--pc);border-radius:99px;padding:1px 8px}
+.etab{width:100%;border-collapse:collapse;font-size:.9rem;margin:12px 0}
+.etab td{padding:6px 0;border-bottom:1px dashed var(--line)}
+.etab td:last-child{text-align:right;font-weight:700}
+.sidehead{flex-wrap:wrap}
+.sidehead div{flex-wrap:wrap}
+.sidehead div button{font-size:.8rem;padding:.4em .65em}
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="board-wrap">
+    <div class="board" id="board">
+      <div class="center">
+        <div class="ctop">
+          <div class="stamp">Republik +62<small>Jilid 2: dari OKB jadi pejabat</small></div>
+          <div class="ticker" aria-label="Berita satir"><span id="ticker"></span></div>
+        </div>
+        <div class="cmid">
+          <div class="deck takdir" id="deckT"><div>🔮</div>Kartu<br>Takdir</div>
+          <div class="dicewrap">
+            <div class="dice" id="dice"><div class="die" id="die0"></div><div class="die" id="die1"></div></div>
+            <div class="sum" id="sum"></div>
+          </div>
+          <div class="deck musibah" id="deckM"><div>⚠️</div>Kartu<br>Musibah</div>
+        </div>
+        <div class="cbot">
+          <div class="lastnews" id="lastNews" aria-live="polite"></div>
+          <div class="status" id="status"></div>
+          <div class="controls" id="controls"></div>
+          <div class="meta"><span>🗓️ Putaran <b id="roundVal">1</b></span><span>🎁 Dana hibah <b id="potVal">Rp 0 rb</b></span><span>📜 <b id="ruleName"></b></span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <aside class="side">
+    <div class="sidehead"><h2>Calon pejabat</h2><div><button class="ghost" id="btnLadder">🪜 Jabatan</button><button class="ghost" id="btnStudio">🛠️ Studio</button><button class="ghost" id="btnRules">❓ Aturan</button><button class="ghost" id="btnNew">⟳ Main baru</button></div></div>
+    <div id="players"></div>
+    <h2>Kabar terbaru</h2>
+    <ol class="log" id="log"></ol>
+  </aside>
+</div>
+<div id="toasts"></div>
+
+<script>
+/* =========================================================
+   REPUBLIK +62 JILID 2: DARI OKB JADI PEJABAT
+   semua nilai uang dalam RIBU rupiah
+   ========================================================= */
+const CORNERS=[0,9,18,27], BOARD_N=36;
+const PCOLORS=['#e63946','#1d7be0','#2ba84a','#e08a00'];
+const CHARS=[['🤵','Juragan Tanah'],['👷','Kontraktor Dadakan'],['👩‍💼','Selebgram Bisnis'],['🎤','Mantan Artis'],['🧑‍🌾','Juragan Sawit'],['🎓','Doktor Honoris Causa'],['🧕','Juragan Katering'],['🧔','Mantan Ketua Ormas']];
+const BOT_NAMES=['Pak Haji Lurus','Bu Hajjah Amanah','Mas Bersih','Mbak Jujur'];
+const TTYPES={prop:'Aset',trans:'Partai',util:'Jasa politik',tax:'Pungutan',elect:'Kotak pemilu',takdir:'Kartu Takdir',musibah:'Kartu Musibah'};
+const TDEF={
+  prop:{g:'brown',price:100000,rent:[7000,35000,100000,300000],build:70000,flavor:''},
+  trans:{icon:'🚩',price:135000,rentBase:15000,flavor:''},
+  util:{icon:'📊',price:100000,mul1:3000,mul2:7000,flavor:''},
+  tax:{icon:'🧧',amount:50000,flavor:''},
+  elect:{icon:'🗳️',flavor:''},
+  takdir:{icon:'🔮'}, musibah:{icon:'⚠️'}
+};
+const KINDS={
+  money:{label:'Terima atau bayar uang',fields:[['v','Nilai (+ bonus, − denda)','money']]},
+  vote:{label:'Hanya mengubah suara',fields:[]},
+  percent:{label:'Persentase uang tunai',fields:[['v','Persen (+ tambah, − potong)','num',-100,500]]},
+  each:{label:'Dengan setiap pemain lain',fields:[['v','Nilai per pemain (+ terima, − bayar)','money']]},
+  repair:{label:'Biaya per aset dan renovasi',fields:[['lv','Biaya per tingkat renovasi','money',0],['pp','Biaya per aset','money',0]]},
+  rankUp:{label:'Naik satu jenjang jabatan',fields:[]},
+  rankDown:{label:'Turun satu jenjang jabatan',fields:[]},
+  moveTo:{label:'Pindah ke kotak tertentu',fields:[['to','Kotak tujuan','tile']]},
+  moveBy:{label:'Maju atau mundur',fields:[['n','Langkah (+ maju, − mundur)','num',-12,12]]},
+  nearest:{label:'Maju ke kotak terdekat berjenis',fields:[['type','Jenis kotak','ttype']]},
+  jail:{label:'Masuk Rutan',fields:[]},
+  ordal:{label:'Kartu Ordal (bebas dari Rutan)',fields:[]},
+};
+const DEFAULT_RANKS=[
+  {name:'Orang Kaya Baru',icon:'💰',cost:0,fajar:0,target:0,salary:0,rentPct:0},
+  {name:'Anggota DPRD',icon:'🪑',cost:150000,fajar:75000,target:9,salary:25000,rentPct:10},
+  {name:'Kepala Daerah',icon:'🏛️',cost:300000,fajar:150000,target:10,salary:50000,rentPct:20},
+  {name:'Anggota DPR RI',icon:'🏢',cost:400000,fajar:175000,target:11,salary:80000,rentPct:35},
+  {name:'Menteri',icon:'👑',cost:600000,fajar:250000,target:12,salary:120000,rentPct:50},
+];
+const DEFAULT_GROUPS={
+  brown:{name:'Usaha rintisan',color:'#8b5a2b',votes:0}, lblue:{name:'Usaha naik kelas',color:'#3fa7d6',votes:0},
+  pink:{name:'Bisnis keluarga',color:'#d94f97',votes:0}, orange:{name:'Media dan citra',color:'#ee8a2b',votes:1},
+  red:{name:'Basis massa',color:'#d62839',votes:1}, yellow:{name:'Proyek daerah',color:'#d9b21f',votes:0},
+  green:{name:'Izin dan konsesi',color:'#2a9d8f',votes:0}, dark:{name:'Proyek strategis',color:'#23395b',votes:0}};
+const _P=(g,name,short,price,rent,build,flavor)=>({t:'prop',g,name,short,price,rent,build,flavor});
+const _TR=(name,short,icon,flavor)=>({t:'trans',name,short,icon,price:135000,rentBase:15000,flavor});
+const _UT=(name,short,icon,flavor)=>({t:'util',name,short,icon,price:100000,mul1:3000,mul2:7000,flavor});
+const _TX=(name,short,icon,amount,flavor)=>({t:'tax',name,short,icon,amount,flavor});
+const _EL=(name,short,icon,flavor)=>({t:'elect',name,short,icon,flavor});
+const _C=(k,name,icon,desc)=>({t:'corner',k,name,short:name,icon,desc});
+const _TK=()=>({t:'takdir',name:'Kartu Takdir',short:'Takdir',icon:'🔮'});
+const _MS=()=>({t:'musibah',name:'Kartu Musibah',short:'Musibah',icon:'⚠️'});
+const DEFAULT_TILES=[
+ _C('go','SETORAN','💼','Setiap lewat atau berhenti di sini, terima setoran usaha keluarga ditambah tunjangan jabatan. Makin tinggi jabatan, makin deras setorannya.'),
+ _P('brown','Rental Mobil Keluarga','Rental Mobil',40000,[3000,13000,40000,120000],35000,'Dulu narik angkot, sekarang punya lima mobil MPV. Dua di antaranya "dipinjamkan" ke kantor kecamatan.'),
+ _MS(),
+ _P('brown','Toko Bangunan Juragan','Toko Bangunan',40000,[4000,20000,60000,167000],35000,'Laris sejak ada proyek desa. Kebetulan kepala desanya teman arisan.'),
+ _TX('Uang Pelicin Perizinan','Uang Pelicin','🧧',100000,'Izin yang resminya 14 hari kerja bisa jadi 2 jam. Kuitansinya "menyusul".'),
+ _TR('Partai Asal Menang','P. Asal Menang','🚩','Ideologinya fleksibel, menyesuaikan siapa yang sedang unggul survei.'),
+ _P('lblue','Gudang Distributor Sembako','Gudang Sembako',65000,[4000,20000,60000,180000],35000,'Paket sembako bergambar wajahmu disimpan di sini, menunggu musim kampanye.'),
+ _TK(),
+ _P('lblue','SPBU Mini Pinggir Jalan','SPBU Mini',80000,[5000,27000,67000,200000],35000,'Antrean solar mengular, kecuali untuk truk proyek milik keluarga.'),
+ _C('jail','Rutan','🔒','Kalau cuma lewat, kamu sedang besuk kolega. Kalau ditahan: kocok kembar, bayar uang jaminan, atau pakai Kartu Ordal.'),
+ _P('pink','CV Pengadaan ATK','CV ATK',95000,[7000,33000,100000,300000],65000,'Pemenang tender ATK lima tahun berturut-turut. Direkturnya adik ipar, alamatnya rumah mertua.'),
+ _UT('Lembaga Survei Pesanan','Survei Pesanan','📊','Hasil survei selalu sesuai dengan siapa yang membayar. Metodologinya rahasia dagang.'),
+ _P('pink','Katering Rapat Dinas','Katering Dinas',105000,[8000,40000,120000,333000],65000,'Nasi kotak seharga hotel bintang lima, isinya ayam goreng dan kerupuk.'),
+ _EL('Pilkada Serentak','Pilkada','🗳️','Kesempatan naik jabatan. Siapkan mahar partai, modal kampanye, dan amplop.'),
+ _TR('Partai Kutu Loncat','P. Kutu Loncat','🦗','Kadernya pindah partai lebih sering daripada ganti seragam.'),
+ _P('orange','Media Online Abal-abal','Media Online',120000,[9000,47000,133000,367000],65000,'Beritanya 90% rilis pers pemilik, 10% tebak-tebakan zodiak.'),
+ _MS(),
+ _P('orange','Pasukan Buzzer','Buzzer',135000,[11000,53000,147000,400000],65000,'Seribu akun, satu admin, nol foto profil asli. Setia sampai kontrak habis.'),
+ _C('bansos','Dana Hibah','🎁','Cairkan dana hibah yang terkumpul dari uang pelicin, mahar, dan denda… setelah dipotong koordinator lapangan.'),
+ _P('red','Yayasan Sosial Keluarga','Yayasan',145000,[12000,60000,167000,467000],100000,'Menerima hibah daerah tiap tahun. Kegiatannya: foto penyerahan bantuan.'),
+ _TK(),
+ _P('red','Ormas Binaan','Ormas Binaan',160000,[13000,67000,200000,500000],100000,'Siap mengamankan acara, spanduk, dan suara. Seragamnya lebih rapi dari satpol PP.'),
+ _TR('Partai Dinasti Bersatu','P. Dinasti','👑','Kaderisasi dimulai sejak lahir. Syarat utama: nama belakang yang tepat.'),
+ _P('yellow','Proyek Jalan Desa','Jalan Desa',175000,[15000,73000,220000,533000],100000,'Aspal setebal kulit martabak. Diperbaiki ulang tiap akhir tahun anggaran.'),
+ _EL('Pemilu Legislatif','Pemilu','🗳️','Kesempatan naik jabatan. Baliho sudah dicetak, saksi TPS sudah dibayar setengah.'),
+ _P('yellow','Revitalisasi Pasar Rakyat','Pasar Rakyat',185000,[16000,80000,240000,567000],100000,'Pasar dipercantik, sewa kios naik tiga kali lipat, pedagang lama pindah ke trotoar.'),
+ _MS(),
+ _C('gojail','Kena OTT!','🚨','Operasi Tangkap Tangan! Langsung ke Rutan tanpa lewat SETORAN. Siapkan rompi oranye dan senyum untuk kamera.'),
+ _P('green','Izin Tambang Galian C','Tambang Galian',200000,[17000,87000,260000,600000],135000,'Izinnya terbit seminggu setelah kamu dilantik. Lubangnya terbit sebulan kemudian.'),
+ _P('green','Konsesi Lahan Sawit','Konsesi Sawit',215000,[19000,100000,300000,667000],135000,'Peta konsesinya menimpa hutan lindung, tapi itu hanya "perbedaan interpretasi".'),
+ _UT('Konsultan Politik','Konsultan','🧠','Menjual strategi menang yang sama ke tiga kandidat yang saling bersaing.'),
+ _TR('Partai Baliho Raya','P. Baliho','📢','Programnya belum jadi, balihonya sudah sampai pelosok desa.'),
+ _EL('Bursa Kabinet','Bursa Kabinet','🎖️','Kesempatan naik jabatan lewat lobi, negosiasi kursi, dan foto bersama di depan istana.'),
+ _P('dark','Kawasan Industri Baru','Kawasan Industri',235000,[23000,117000,333000,733000],135000,'Ditetapkan sebagai proyek strategis, jadi sawah warga bisa digusur dengan cepat.'),
+ _TK(),
+ _P('dark','Proyek Jalan Tol','Jalan Tol',265000,[33000,133000,400000,933000],135000,'Tarifnya naik tiap dua tahun. Kamu dulu dapat ganti untung dari proyek sejenis, kini kamu pemiliknya.'),
+];
+const DEFAULT_TAKDIR=[
+ {title:'Ganti untung jalan tol',text:'Tanah warisan kakek kena trase jalan tol. Ganti untungnya bikin satu kampung mendadak memanggilmu "Juragan".',k:'money',v:300000,vote:1},
+ {title:'Dipinang partai',text:'Ketua partai melihat saldo rekeningmu dan mendadak yakin kamu kader terbaik bangsa. Maju ke kotak pemilu terdekat.',k:'nearest',type:'elect'},
+ {title:'Baliho di setiap tikungan',text:'Wajahmu kini menghiasi setiap tikungan, tiang listrik, dan pohon mangga warga. Mahal, tapi orang jadi hafal.',k:'money',v:-50000,vote:2},
+ {title:'Bagi sembako viral',text:'Kamu membagikan sembako sambil direkam lima kamera. Kardusnya lebih besar dari isinya, tapi videonya ditonton sejuta kali.',k:'money',v:-30000,vote:2},
+ {title:'Kartu Ordal',text:'Iparmu ternyata kenal orang penting di pengadilan. Simpan kartu ini untuk keluar dari Rutan tanpa antre.',k:'ordal'},
+ {title:'Perda pesanan',text:'Perda yang "kebetulan" menguntungkan usaha keluargamu disahkan dalam rapat 15 menit, pukul 23.00.',k:'money',v:200000},
+ {title:'Ditunjuk Plt',text:'Pejabat sebelumnya tersandung kasus. Kamu ditunjuk jadi pelaksana tugas, lalu lupa bahwa itu sementara. Naik satu jenjang.',k:'rankUp'},
+ {title:'Studi banding ke Eropa',text:'Studi banding pengelolaan sampah ke Eropa. Oleh-oleh pulang: foto di depan menara dan uang saku yang tersisa.',k:'money',v:50000},
+ {title:'Parsel lebaran',text:'Parsel berdatangan dari rekanan proyek. Isinya kurma, sirup, dan amplop yang terselip di bawah kaleng biskuit.',k:'money',v:80000},
+ {title:'Aturan berubah semalam',text:'Aturan yang kemarin berlaku, hari ini dicabut, besok mungkin berlaku lagi. Mundur 3 langkah.',k:'moveBy',n:-3},
+ {title:'Blusukan ke pasar becek',text:'Blusukan ke pasar becek pakai sepatu kulit impor. Fotografernya tiga, pedagangnya bingung.',k:'money',v:-20000,vote:3},
+ {title:'Debat kandidat',text:'Kamu salah menyebut nama kecamatan sendiri saat debat. Potongan videonya jadi meme nasional.',k:'vote',vote:-2},
+ {title:'Survei pesanan',text:'Lembaga survei merilis elektabilitasmu unggul jauh. Kebetulan kamu yang membayar surveinya.',k:'money',v:-60000,vote:2},
+ {title:'Dinasti politik',text:'Anakmu ikut nyalon dan langsung jadi. Setiap pemain mengirim "kado pelantikan".',k:'each',v:25000,vote:1},
+ {title:'Rapat di hotel bintang lima',text:'Rapat efisiensi anggaran digelar tiga hari di hotel bintang lima. Uang harianmu cair penuh.',k:'money',v:40000},
+ {title:'Saham keluarga melonjak',text:'Perusahaan keluargamu dapat proyek strategis. Sahamnya naik, kamu pura-pura kaget.',k:'money',v:150000},
+ {title:'Lobi kursi',text:'Makan malam dengan petinggi partai berbuah janji kursi. Maju ke Bursa Kabinet.',k:'moveTo',to:32},
+ {title:'Jadi bintang tamu podcast',text:'Kamu tampil di podcast populer dan bercerita tentang masa kecil yang susah. Netizen terharu.',k:'vote',vote:2},
+];
+const DEFAULT_MUSIBAH=[
+ {title:'Serangan fajar salah alamat',text:'Salah satu amplop serangan fajarmu sampai ke rumah wartawan investigasi.',k:'money',v:-100000,vote:-2},
+ {title:'Saksi TPS minta tambahan',text:'Saksi TPS mengancam "lupa mencatat" kalau honornya tidak dinaikkan.',k:'money',v:-50000},
+ {title:'Demo mahasiswa',text:'Mahasiswa demo di depan kantormu. Kamu menjawab "akan kami kaji", dan itu justru memperparah.',k:'vote',vote:-2},
+ {title:'Sirene di jalan macet',text:'Mobilmu menyalakan sirene untuk menembus macet. Videonya viral, plat nomornya dihafal netizen.',k:'money',v:-10000,vote:-1},
+ {title:'Pamer tas di medsos',text:'Pasanganmu pamer tas seharga satu gedung sekolah. Netizen mulai menghitung laporan harta kekayaanmu.',k:'vote',vote:-2},
+ {title:'Dipanggil lembaga antirasuah',text:'Biaya pengacara, juru bicara, dan kemeja putih untuk konferensi pers.',k:'money',v:-150000},
+ {title:'Jalan proyek ambrol',text:'Jalan yang baru diresmikan ambrol sebelum spanduk peresmiannya diturunkan.',k:'money',v:-120000,vote:-1},
+ {title:'Banjir di dapil',text:'Dapilmu banjir. Kamu datang naik perahu karet, fotografernya naik perahu kedua.',k:'money',v:-60000},
+ {title:'Bohir menagih',text:'Para bohir yang dulu membiayai kampanyemu datang menagih "balas budi".',k:'money',v:-200000},
+ {title:'Ditinggal partai',text:'Partaimu pindah dukungan ke rival sehari sebelum pendaftaran calon.',k:'vote',vote:-3},
+ {title:'Dicopot dari jabatan',text:'Kamu terseret skandal rapat tertutup. Partai mengumumkan "penyegaran". Turun satu jenjang jabatan.',k:'rankDown'},
+ {title:'Audit usaha keluarga',text:'Auditor memeriksa semua usaha keluarga. Bayar per tingkat renovasi dan per aset.',k:'repair',lv:20000,pp:10000},
+ {title:'Kampanye hitam',text:'Rivalmu menyebar foto lama saat kamu masih jualan pulsa. Anehnya, malah ada yang simpati.',k:'money',v:-30000,vote:-1},
+ {title:'Menang sengketa pemilu',text:'Gugatan sengketa hasil pemilumu dikabulkan. Musibah yang berujung manis.',k:'vote',vote:3},
+ {title:'Terjaring OTT',text:'Petugas datang saat kamu menerima "kardus buah". Masuk Rutan, tidak lewat SETORAN.',k:'jail'},
+ {title:'Rumah digeledah',text:'Penyidik menggeledah rumahmu dan menyita koleksi jam tangan. Bayar per tingkat renovasi dan per aset.',k:'repair',lv:15000,pp:15000},
+ {title:'Kalah taruhan politik',text:'Kamu bertaruh calon jagoanmu menang. Ternyata kalah. Bayar ke setiap pemain lain.',k:'each',v:-30000},
+ {title:'Rekaman telepon bocor',text:'Rekaman teleponmu soal "jatah proyek" bocor ke publik.',k:'money',v:-80000,vote:-3},
+];
+
+/* ---------- aturan ---------- */
+const BASE_RULES={startCash:1000000,salary:135000,landGoBonus:0,sellPct:50,cardMultPct:100,
+  buyMode:'optional',monopolyMult:2,maxRenov:3,renovNeedsSet:true,rentInJail:true,startAssets:0,
+  doublesAgain:true,tripleJail:true,jailFine:35000,jailMaxTurns:3,
+  finesToPot:true,bansosStart:0,bansosCutPct:30,
+  rankWin:true,electionEvery:3,fajarBonus:3,votesReset:true,ottDemote:true,
+  inflationEvery:0,inflationPct:10,salaryFollowsInflation:false,roundLimit:0,targetWealth:0};
+const RULE_FIELDS=[
+ {sec:'Uang dan setoran'},
+ {k:'startCash',label:'Modal awal tiap pemain (hasil ganti untung)',t:'money',min:0},
+ {k:'salary',label:'Setoran usaha setiap lewat SETORAN (di luar tunjangan jabatan)',t:'money',min:0},
+ {k:'landGoBonus',label:'Bonus jika berhenti tepat di SETORAN',t:'money',min:0},
+ {k:'sellPct',label:'Nilai jual aset ke bank (% dari harga)',t:'pct',min:0,max:100},
+ {k:'cardMultPct',label:'Pengali nilai uang kartu Takdir dan Musibah (%)',t:'pct',min:0,max:500},
+ {sec:'Karier politik'},
+ {k:'rankWin',label:'Menang otomatis saat mencapai jenjang jabatan tertinggi',t:'bool'},
+ {k:'electionEvery',label:'Pemilu serentak setiap … putaran, semua pemain boleh nyalon (0 = mati)',t:'num',min:0,max:20},
+ {k:'fajarBonus',label:'Tambahan suara dari serangan fajar',t:'num',min:0,max:12},
+ {k:'votesReset',label:'Elektabilitas habis terpakai setelah ikut pemilu',t:'bool'},
+ {k:'ottDemote',label:'Kena OTT membuat jabatan turun satu jenjang',t:'bool'},
+ {sec:'Aset dan sewa'},
+ {k:'buyMode',label:'Pembelian aset',t:'select',opts:[['optional','Boleh pilih beli atau lewati'],['mandatory','Wajib beli jika uang cukup']]},
+ {k:'monopolyMult',label:'Pengali sewa dasar jika kelompok warna lengkap',t:'num',min:1,max:5},
+ {k:'maxRenov',label:'Maksimal tingkat ekspansi usaha (0–3)',t:'num',min:0,max:3},
+ {k:'renovNeedsSet',label:'Ekspansi hanya jika menguasai satu kelompok warna',t:'bool'},
+ {k:'rentInJail',label:'Pemilik yang sedang di Rutan tetap menerima sewa',t:'bool'},
+ {k:'startAssets',label:'Aset keluarga acak yang dibagikan di awal (per pemain)',t:'num',min:0,max:5},
+ {sec:'Dadu dan Rutan'},
+ {k:'doublesAgain',label:'Dadu kembar boleh kocok lagi',t:'bool'},
+ {k:'tripleJail',label:'Kembar 3 kali berturut-turut masuk Rutan',t:'bool'},
+ {k:'jailFine',label:'Uang jaminan keluar Rutan',t:'money',min:0},
+ {k:'jailMaxTurns',label:'Maksimal giliran di Rutan sebelum wajib bayar',t:'num',min:1,max:6},
+ {sec:'Dana hibah'},
+ {k:'finesToPot',label:'Pungutan, mahar, dan denda masuk dana hibah',t:'bool'},
+ {k:'bansosStart',label:'Dana hibah di awal permainan',t:'money',min:0},
+ {k:'bansosCutPct',label:'Potongan koordinator saat hibah dicairkan (%)',t:'pct',min:0,max:100},
+ {sec:'Ekonomi dan akhir permainan'},
+ {k:'inflationEvery',label:'Inflasi setiap … putaran (0 = mati)',t:'num',min:0,max:20},
+ {k:'inflationPct',label:'Kenaikan harga, sewa, dan pungutan saat inflasi (%)',t:'pct',min:0,max:100},
+ {k:'salaryFollowsInflation',label:'Setoran ikut naik saat inflasi',t:'bool'},
+ {k:'roundLimit',label:'Batas putaran (0 = tanpa batas)',t:'num',min:0,max:200},
+ {k:'targetWealth',label:'Menang otomatis saat kekayaan bersih mencapai (0 = mati)',t:'money',min:0},
+];
+const DEFAULT_PRESETS=[
+ {id:'std',name:'Standar jilid 2',desc:'Rintis karier dari OKB sampai Menteri. Siapa pertama duduk di kursi tertinggi, dia menang.',r:{}},
+ {id:'kilat',name:'Kilat 15 putaran',desc:'Modal lebih besar, selesai dalam 15 putaran. Pemenang: jabatan tertinggi, lalu kekayaan.',r:{startCash:1500000,roundLimit:15,electionEvery:2}},
+ {id:'bersih',name:'Pemilu bersih (utopia)',desc:'Serangan fajar sama sekali tidak menambah suara. Mode paling fiktif di game ini.',r:{fajarBonus:0}},
+ {id:'dinasti',name:'Politik dinasti',desc:'Tiap pemain mulai dengan 2 aset keluarga acak, tapi modal tunainya dipangkas.',r:{startAssets:2,startCash:800000}},
+ {id:'kebal',name:'Kebal hukum',desc:'Kena OTT tidak membuat jabatan dicopot, dan keluar Rutan cukup satu giliran.',r:{ottDemote:false,jailMaxTurns:1}},
+ {id:'krismon',name:'Krisis jelang pemilu',desc:'Setiap 3 putaran harga, sewa, dan pungutan naik 15%. Setoran tidak ikut naik.',r:{inflationEvery:3,inflationPct:15,roundLimit:25}},
+ {id:'sultan',name:'Sultan tanpa jabatan',desc:'Jabatan tidak menentukan kemenangan. Yang pertama punya kekayaan bersih Rp 3 M menang.',r:{rankWin:false,targetWealth:3000000}},
+ {id:'keras',name:'Politik makin keras',desc:'Nilai uang semua kartu dikali 2, uang jaminan Rutan Rp 100 jt.',r:{cardMultPct:200,jailFine:100000}},
+];
+
+/* ---------- utilitas ---------- */
+const $=s=>document.querySelector(s);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const clone=o=>JSON.parse(JSON.stringify(o));
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtS=n=>{const a=Math.abs(Math.round(n||0));return a>=1000000?(a/1000000).toLocaleString('id-ID',{maximumFractionDigits:2})+' M':a>=1000?(a/1000).toLocaleString('id-ID',{maximumFractionDigits:2})+' jt':a.toLocaleString('id-ID')+' rb'};
+const fmt=n=>(n<0?'−':'')+'Rp '+fmtS(n);
+const rnd6=()=>{try{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%6+1}catch(e){return Math.floor(Math.random()*6)+1}};
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const isAsset=t=>t&&(t.t==='prop'||t.t==='trans'||t.t==='util');
+const uid=()=>'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const num=(v,d,min,max)=>{let n=Number(v);if(!isFinite(n))return d;n=Math.round(n);if(min!=null)n=Math.max(min,n);if(max!=null)n=Math.min(max,n);return n};
+const str=(v,d,max=400)=>typeof v==='string'?v.slice(0,max):d;
+const round25=x=>Math.max(25,Math.round(x/25)*25);
+
+/* ---------- konfigurasi ---------- */
+function defaultConfig(){
+  return {v:2,updatedAt:0,groups:clone(DEFAULT_GROUPS),tiles:clone(DEFAULT_TILES),
+    takdir:DEFAULT_TAKDIR.map((c,i)=>({id:'t'+(i+1),enabled:true,...c})),
+    musibah:DEFAULT_MUSIBAH.map((c,i)=>({id:'m'+(i+1),enabled:true,...c})),
+    presets:DEFAULT_PRESETS.map(p=>({id:p.id,name:p.name,desc:p.desc,builtin:true,rules:{...BASE_RULES,...p.r}})),
+    ranks:clone(DEFAULT_RANKS),activePreset:'std'};
+}
+function normRules(r){
+  const o={}; r=r&&typeof r==='object'?r:{};
+  for(const f of RULE_FIELDS){ if(!f.k) continue; const d=BASE_RULES[f.k], v=r[f.k];
+    if(f.t==='bool') o[f.k]=typeof v==='boolean'?v:d;
+    else if(f.t==='select') o[f.k]=f.opts.some(x=>x[0]===v)?v:d;
+    else o[f.k]=num(v,d,f.min,f.max); }
+  return o;
+}
+function fillTile(t,def){
+  const ty=t.t; const base=TDEF[ty]||{};
+  const o={t:ty,name:str(t.name,def.name||'Kotak',60),short:str(t.short,def.short||t.name||'Kotak',24),icon:str(t.icon,base.icon||def.icon||'',8)};
+  if(ty==='prop'){ o.g=DEFAULT_GROUPS[t.g]?t.g:'brown'; o.price=num(t.price,base.price,0); o.build=num(t.build,base.build,0);
+    const r=Array.isArray(t.rent)?t.rent:base.rent; o.rent=[0,1,2,3].map(k=>num(r[k],base.rent[k],0)); o.flavor=str(t.flavor,'',400); }
+  if(ty==='trans'){ o.price=num(t.price,base.price,0); o.rentBase=num(t.rentBase,base.rentBase,0); o.flavor=str(t.flavor,'',400); }
+  if(ty==='util'){ o.price=num(t.price,base.price,0); o.mul1=num(t.mul1,base.mul1,0); o.mul2=num(t.mul2,base.mul2,0); o.flavor=str(t.flavor,'',400); }
+  if(ty==='tax'){ o.amount=num(t.amount,base.amount,0); o.flavor=str(t.flavor,'',400); }
+  if(ty==='elect'){ o.flavor=str(t.flavor,'',400); }
+  return o;
+}
+function normCard(c){
+  if(!c||typeof c!=='object') return null;
+  return {id:str(c.id,'',40)||uid(),title:str(c.title,'Kartu tanpa judul',80),text:str(c.text,'',500),
+    k:KINDS[c.k]?c.k:(c.k==='back'?'moveBy':'money'),v:num(c.v,0,-1000000,1000000),lv:num(c.lv,0,0),pp:num(c.pp,0,0),
+    to:num(c.to,0,0,BOARD_N-1),n:c.k==='back'?-num(c.n,3,0,12):num(c.n,3,-12,12),type:TTYPES[c.type]?c.type:'elect',vote:num(c.vote,0,-10,10),enabled:c.enabled!==false};
+}
+function normalize(c){
+  const d=defaultConfig(); if(!c||typeof c!=='object') return d;
+  const o={v:2,updatedAt:num(c.updatedAt,0)};
+  o.groups={}; for(const k in d.groups){ const g=(c.groups||{})[k]||{}; o.groups[k]={name:str(g.name,d.groups[k].name,40),color:/^#[0-9a-f]{6}$/i.test(g.color||'')?g.color:d.groups[k].color,votes:num(g.votes,d.groups[k].votes,0,5)}; }
+  if(Array.isArray(c.tiles)&&c.tiles.length===BOARD_N){
+    o.tiles=c.tiles.map((t,i)=>{ const def=d.tiles[i]; t=t&&typeof t==='object'?t:def;
+      if(CORNERS.includes(i)) return {t:'corner',k:def.k,name:str(t.name,def.name,40),short:str(t.name,def.name,40),icon:str(t.icon,def.icon,8),desc:str(t.desc,def.desc,400)};
+      const ty=TTYPES[t.t]?t.t:def.t; return fillTile({...t,t:ty},def); });
+  } else o.tiles=d.tiles;
+  o.takdir=Array.isArray(c.takdir)?c.takdir.map(normCard).filter(Boolean):d.takdir;
+  o.musibah=Array.isArray(c.musibah)?c.musibah.map(normCard).filter(Boolean):d.musibah;
+  const ids=new Set(DEFAULT_PRESETS.map(p=>p.id));
+  o.presets=Array.isArray(c.presets)&&c.presets.length?c.presets.filter(p=>p&&typeof p==='object').map(p=>({id:str(p.id,'',40)||uid(),name:str(p.name,'Aturan tanpa nama',60),desc:str(p.desc,'',300),builtin:!!p.builtin&&ids.has(p.id),rules:normRules(p.rules)})):d.presets;
+  if(!o.presets.length) o.presets=d.presets;
+  o.activePreset=o.presets.some(p=>p.id===c.activePreset)?c.activePreset:o.presets[0].id;
+  o.ranks=Array.isArray(c.ranks)&&c.ranks.length>=2?c.ranks.slice(0,8).map((r,i)=>{ r=r&&typeof r==='object'?r:{}; const dr=d.ranks[Math.min(i,d.ranks.length-1)];
+    return {name:str(r.name,dr.name,40),icon:str(r.icon,dr.icon,8),cost:num(r.cost,dr.cost,0),fajar:num(r.fajar,dr.fajar,0),target:num(r.target,dr.target,2,20),salary:num(r.salary,dr.salary,0),rentPct:num(r.rentPct,dr.rentPct,0,300)}; }):d.ranks;
+  return o;
+}
+const LS_KEY='republik62-jilid2-config';
+function loadLocal(){ try{ const s=localStorage.getItem(LS_KEY); return s?JSON.parse(s):null; }catch(e){ return null; } }
+let CFG=normalize(loadLocal());
+const activePreset=()=>CFG.presets.find(p=>p.id===CFG.activePreset)||CFG.presets[0];
+
+/* ---------- penyimpanan (akun via db, cadangan di browser) ---------- */
+const Store={db:null,ref:null,mode:'local',timer:null,busy:false,again:false,listeners:[],
+  status:'Tersimpan di browser ini',
+  setStatus(s){ this.status=s; this.listeners.forEach(f=>f(s)); },
+  async init(){
+    if(!window.claude||!window.claude.use) return;
+    try{
+      const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+      if(!db||!user) return;
+      const id=await user.id(); if(!id) return;
+      this.db=db; this.ref=db.doc('data/users/'+id+'/config-jilid2');
+      const snap=await this.ref.get();
+      let remote=null; if(snap.exists){ try{ remote=JSON.parse(snap.data().json); }catch(e){} }
+      this.mode='akun';
+      if(remote&&num(remote.updatedAt,0)>CFG.updatedAt){ CFG=normalize(remote); saveLocal(); onConfigReplaced(); this.setStatus('Tersimpan di akunmu'); }
+      else if(CFG.updatedAt>0){ await this.write(); }
+      else this.setStatus('Tersimpan di akunmu');
+    }catch(e){ this.mode='local'; this.setStatus('Tersimpan di browser ini'); }
+  },
+  schedule(){ CFG.updatedAt=Date.now(); saveLocal(); this.setStatus('Menyimpan…'); clearTimeout(this.timer); this.timer=setTimeout(()=>this.write(),800); },
+  async write(){
+    if(!this.ref){ this.setStatus('Tersimpan di browser ini'); return; }
+    if(this.busy){ this.again=true; return; }
+    this.busy=true;
+    try{ await this.ref.set({json:JSON.stringify(CFG),updatedAt:CFG.updatedAt}); this.setStatus('Tersimpan di akunmu'); }
+    catch(e){ if(e&&e.code==='unavailable'){ await sleep(1200+Math.random()*800); try{ await this.ref.set({json:JSON.stringify(CFG),updatedAt:CFG.updatedAt}); this.setStatus('Tersimpan di akunmu'); }catch(e2){ this.setStatus('Gagal menyimpan ke akun, tersimpan di browser ini'); } }
+      else { this.ref=null; this.mode='local'; this.setStatus('Tersimpan di browser ini'); } }
+    this.busy=false;
+    if(this.again){ this.again=false; this.write(); }
+  }
+};
+function saveLocal(){ try{ localStorage.setItem(LS_KEY,JSON.stringify(CFG)); }catch(e){} }
+
+/* ---------- state permainan ---------- */
+let S=null, TILES=CFG.tiles, GROUPS=CFG.groups, RANKS=CFG.ranks, R={...activePreset().rules};
+const tileEls=[];
+const setup={slots:[
+  {type:'human',name:'Pemain 1',char:0},{type:'bot',name:BOT_NAMES[1],char:3},
+  {type:'bot',name:BOT_NAMES[2],char:4},{type:'off',name:BOT_NAMES[3],char:6}]};
+const cur=()=>S.players[S.cur];
+const pn=p=>`<b style="color:${p.color}">${p.char} ${esc(p.name)}</b>`;
+const gColor=g=>(GROUPS[g]||{color:'#999'}).color;
+const gameLive=()=>S&&!S.over;
+const fineDest=()=>R.finesToPot?'pot':'bank';
+function useIdleConfig(){ TILES=CFG.tiles; GROUPS=CFG.groups; RANKS=CFG.ranks; R={...activePreset().rules}; }
+const rankOf=p=>RANKS[Math.min(p.rank,RANKS.length-1)];
+const topRank=()=>RANKS.length-1;
+function assetVotes(p){ let v=0; S.own.forEach((o,i)=>{ const t=TILES[i]; if(o.owner===p.id&&t.t==='prop') v+=(GROUPS[t.g]||{}).votes||0; }); return v; }
+function addVotes(p,n){ if(!n) return; p.votes=Math.max(-10,Math.min(20,p.votes+n)); log(`📈 Elektabilitas ${pn(p)} ${n>0?'naik':'turun'} ${Math.abs(n)} (sekarang ${p.votes>0?'+':''}${p.votes}).`); }
+function setRank(p,d,why){ const nr=Math.max(0,Math.min(topRank(),p.rank+d)); if(nr===p.rank) return false; p.rank=nr; const r=rankOf(p);
+  log(`${d>0?'🎖️':'📉'} ${pn(p)} ${d>0?'naik':'turun'} jabatan menjadi ${r.icon} <b>${esc(r.name)}</b>${why?' '+why:''}.`); toast(`${r.icon} ${esc(p.name)}: ${esc(r.name)}`,d>0?'good':'bad'); render(); return true; }
+function onConfigReplaced(){ if(!gameLive()){ S=null; useIdleConfig(); buildBoard(); render(); } if(setupRedraw) setupRedraw(); }
+
+/* ================= PAPAN ================= */
+function gridPos(i){ if(i<=9) return {r:10,c:10-i}; if(i<=18) return {r:10-(i-9),c:1}; if(i<=27) return {r:1,c:1+(i-18)}; return {r:1+(i-27),c:10}; }
+function cornerSub(t){ return {go:'+'+fmtS(R.salary)+' + tunjangan',jail:'besuk kolega',bansos:'cairkan hibah',gojail:'rompi oranye'}[t.k]||''; }
+function buildBoard(){
+  const b=$('#board'); b.querySelectorAll('.tile').forEach(e=>e.remove()); tileEls.length=0;
+  TILES.forEach((t,i)=>{
+    const {r,c}=gridPos(i); const el=document.createElement('div');
+    const side=t.t==='corner'?'corner k-'+t.k:(i<9?'side-b':i<18?'side-l':i<27?'side-t':'side-r');
+    el.className=`tile ${side} tt-${t.t}`; el.style.gridRow=r; el.style.gridColumn=c;
+    el.setAttribute('role','button'); el.tabIndex=0; el.setAttribute('aria-label',t.name);
+    let h;
+    if(t.t==='prop') h=`<div class="band" style="background:${gColor(t.g)}"></div><div class="body"><span class="nm">${esc(t.short)}</span><span class="pr">${fmtS(t.price)}</span><span class="lv"></span></div>`;
+    else if(t.t==='corner') h=`<div class="body"><span class="ic">${esc(t.icon)}</span><span class="nm">${esc(t.name)}</span><span class="sub">${cornerSub(t)}</span></div>`;
+    else h=`<div class="body"><span class="ic">${esc(t.icon)}</span><span class="nm">${esc(t.short)}</span>${t.price?`<span class="pr">${fmtS(t.price)}</span>`:t.t==='tax'?`<span class="pr">−${fmtS(t.amount)}</span>`:''}<span class="lv"></span></div>`;
+    el.innerHTML=h+'<div class="tokens"></div>';
+    el.onclick=()=>showTileInfo(i);
+    el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showTileInfo(i)}};
+    b.appendChild(el); tileEls[i]={el,tok:el.querySelector('.tokens'),lv:el.querySelector('.lv')};
+  });
+}
+const PIPS={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]};
+function buildDice(){
+  ['#die0','#die1'].forEach(sel=>{ const d=$(sel); let h='';
+    for(let v=1;v<=6;v++) h+=`<div class="face f${v}">`+PIPS[v].map(n=>`<span class="pip ${v===1||v===4?'red':''}" style="grid-row:${Math.ceil(n/3)};grid-column:${(n-1)%3+1}"></span>`).join('')+'</div>';
+    d.innerHTML=h; });
+  setDie(0,5,true); setDie(1,3,true);
+}
+const BASE={1:[0,0],2:[90,0],3:[0,-90],4:[0,90],5:[-90,0],6:[0,180]}; const spin=[0,0];
+function setDie(idx,v,instant){ const el=$('#die'+idx); spin[idx]+=2; const [bx,by]=BASE[v];
+  const kx=spin[idx]+(Math.random()<.5?1:0), ky=spin[idx]+1, z=Math.round(Math.random()*24-12);
+  if(instant) el.style.transition='none';
+  el.style.transform=`rotateZ(${z}deg) rotateX(${bx+360*kx}deg) rotateY(${by+360*ky}deg)`;
+  if(instant){el.offsetHeight; el.style.transition=''} }
+async function rollDice(a,b){ $('#sum').textContent=''; setDie(0,a); setDie(1,b);
+  await sleep(matchMedia('(prefers-reduced-motion: reduce)').matches?120:1050);
+  $('#sum').textContent=`${a} + ${b} = ${a+b}`+(a===b?' · kembar!':''); }
+
+/* ================= RENDER ================= */
+function render(){
+  $('#ruleName').textContent=S?S.ruleName:activePreset().name;
+  if(!S){ renderIdle(); return; }
+  renderTiles(); renderPlayers(); renderControls(); renderLog();
+  $('#potVal').textContent=fmt(S.pot); $('#roundVal').textContent=R.roundLimit?`${Math.min(S.round,R.roundLimit)}/${R.roundLimit}`:S.round;
+}
+function renderIdle(){
+  tileEls.forEach(te=>{ te.el.style.boxShadow=''; if(te.lv) te.lv.textContent=''; te.tok.innerHTML=''; });
+  $('#players').innerHTML='<div class="idle">Belum ada permainan. Atur pemain dan pilih koleksi aturan di layar mulai.</div>';
+  $('#log').innerHTML=''; $('#lastNews').innerHTML=''; $('#status').innerHTML=''; $('#controls').innerHTML='<button class="primary" id="cStart">Mulai permainan</button>';
+  $('#cStart').onclick=showSetup; $('#potVal').textContent=fmt(R.bansosStart); $('#roundVal').textContent='–';
+}
+function renderTiles(){
+  TILES.forEach((t,i)=>{ const te=tileEls[i], o=S.own[i];
+    te.el.style.boxShadow=o.owner!==null?`inset 0 0 0 .45cqw ${S.players[o.owner].color}`:'';
+    if(te.lv) te.lv.textContent=o.level?'🏠'.repeat(o.level):'';
+    te.tok.innerHTML=S.players.filter(p=>!p.bankrupt&&p.pos===i).map(p=>`<span class="token ${p.id===S.cur&&!S.over?'active':''}" style="--c:${p.color}" title="${esc(p.name)}">${p.char}</span>`).join('');
+  });
+}
+function netWorth(p){ let w=p.cash; S.own.forEach((o,i)=>{ if(o.owner===p.id){ const t=TILES[i]; w+=t.price+(o.level*(t.build||0)); } }); return w; }
+function noteBreakdown(n){ const D=[1000000,100000,50000,10000,5000,1000]; const out=[]; let r=Math.max(0,Math.floor(n)); for(const d of D){ const c=Math.floor(r/d); if(c){out.push([d,c]); r-=c*d;} } return out; }
+const NOTE_C={1000000:'#3e2723',100000:'#c62828',50000:'#1565c0',10000:'#6a1b9a',5000:'#7b5e3b',1000:'#455a64'};
+const noteLbl=d=>d>=1000000?`${d/1000000}<small>M</small>`:`${d/1000}<small>jt</small>`;
+function renderPlayers(){
+  $('#players').innerHTML=S.players.map(p=>{
+    const chips=S.own.map((o,i)=>{ if(o.owner!==p.id) return ''; const t=TILES[i];
+      return t.t==='prop'?`<span class="chip" style="background:${gColor(t.g)}" title="${esc(t.name)}">${o.level||''}</span>`:`<span class="chip n" title="${esc(t.name)}">${esc(t.icon)}</span>`; }).join('');
+    const status=[p.bankrupt?'💀 Bangkrut':'',p.jail?'🔒 Di Rutan':'',p.ordal?`🎫 Kartu Ordal ×${p.ordal}`:''].filter(Boolean).join(', ');
+    const open=S.notesOpen.has(p.id);
+    return `<div class="pcard ${p.id===S.cur&&!S.over?'active':''} ${p.bankrupt?'dead':''}" id="pc-${p.id}" style="--pc:${p.color}">
+      <div class="ph"><span class="pav">${p.char}</span><div><div class="pname">${esc(p.name)}${p.isBot?'<span class="tag">bot</span>':''}</div><div class="psub">${p.charName}, di ${esc(TILES[p.pos].short)}</div></div><div class="pcash">${fmt(p.cash)}</div></div>
+      <div class="rankline"><span class="rk">${rankOf(p).icon} ${esc(rankOf(p).name)}</span><span class="vt">Suara ${p.votes>0?'+':''}${p.votes}${assetVotes(p)?`, basis aset +${assetVotes(p)}`:''}</span></div>
+      <div class="pmeta">Kekayaan bersih ${fmt(netWorth(p))}${status?'<br>'+status:''}</div>
+      ${chips?`<div class="chips">${chips}</div>`:''}
+      <button class="notes-tg ghost" data-id="${p.id}">💵 ${open?'Tutup':'Lihat'} lembar uang</button>
+      ${open?`<div class="notes">${noteBreakdown(p.cash).map(([d,c])=>`<div class="note" style="background:${NOTE_C[d]}" title="${d>=1000000?'Koper ':'Gepokan '}${fmt(d)}">${noteLbl(d)}<b>×${c}</b></div>`).join('')||'<span class="psub">Rekening kosong. Mungkin sudah dibekukan.</span>'}</div>`:''}
+    </div>`; }).join('');
+  document.querySelectorAll('.notes-tg').forEach(b=>b.onclick=()=>{const id=+b.dataset.id; S.notesOpen.has(id)?S.notesOpen.delete(id):S.notesOpen.add(id); renderPlayers();});
+}
+function defaultHint(p){
+  if(S.busy) return 'Sedang berjalan…';
+  if(S.phase==='roll') return p.jail?'Kocok kembar untuk bebas, atau bayar uang jaminan.':'Kocok dadu untuk melangkah.';
+  return 'Mau ekspansi usaha dulu? Kalau sudah, akhiri giliran.';
+}
+function renderControls(){
+  const st=$('#status'), ct=$('#controls');
+  if(S.over){ st.innerHTML='🏁 Permainan selesai'; ct.innerHTML='<button class="primary" id="cNew">Main lagi</button>'; $('#cNew').onclick=showSetup; return; }
+  const p=cur();
+  st.innerHTML=`<span class="turnchip" style="--pc:${p.color}">${p.char} ${esc(p.name)}</span> ${p.jail?'<span class="jailtag">🔒 di sel</span>':''}<div class="hint">${S.hint||defaultHint(p)}</div>`;
+  if(p.isBot){ ct.innerHTML=`<div class="thinking">🤖 ${S.busy?'sedang beraksi…':'sedang menimbang-nimbang…'}</div>`; return; }
+  let h='';
+  if(S.phase==='roll'){
+    h+=`<button class="primary" id="cRoll" ${S.busy?'disabled':''}>🎲 Kocok dadu</button>`;
+    if(p.jail&&!S.busy){ h+=`<button id="cPay" ${p.cash<R.jailFine?'disabled':''}>💸 Bayar uang jaminan ${fmt(R.jailFine)}</button>`; if(p.ordal>0) h+='<button id="cOrdal">🎫 Pakai Kartu Ordal</button>'; }
+  } else if(S.phase==='end') h+=`<button class="primary" id="cEnd" ${S.busy?'disabled':''}>Akhiri giliran</button>`;
+  if(!S.busy) h+='<button class="ghost" id="cManage">🏘️ Kelola aset</button>';
+  ct.innerHTML=h;
+  const on=(id,fn)=>{const e=$(id); if(e) e.onclick=fn};
+  on('#cRoll',onRoll); on('#cEnd',endTurn); on('#cPay',()=>payJail(cur())); on('#cOrdal',()=>useOrdal(cur())); on('#cManage',()=>openManage(cur()));
+}
+function renderLog(){
+  const el=$('#log'); if(!el) return;
+  const fresh=Math.max(0,(S.logN||0)-(S.logShown||0)); S.logShown=S.logN||0;
+  el.innerHTML=S.log.map((l,i)=>`<li class="${l.sep?'sep':''}${i<fresh?' fresh':''}">${l.h}</li>`).join('');
+  if(fresh) el.scrollTop=0;
+  const ln=$('#lastNews'); if(ln){ const last=S.log.find(l=>!l.sep); ln.innerHTML=last?'📰 '+last.h:''; }
+}
+function log(h,sep){ S.log.unshift({h,sep}); S.logN=(S.logN||0)+1; if(S.log.length>90) S.log.pop(); if(S.log.length&&$('#log')) renderLog(); }
+function toast(h,kind=''){ const box=$('#toasts'); const el=document.createElement('div'); el.className='toast '+kind; el.innerHTML=h; box.appendChild(el); while(box.children.length>3) box.firstChild.remove(); setTimeout(()=>el.classList.add('out'),2600); setTimeout(()=>el.remove(),3000); }
+function floatMoney(p,delta){
+  if(!delta) return; const card=document.getElementById('pc-'+p.id); if(!card) return;
+  const r=card.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+  const el=document.createElement('div'); el.className='float'; el.style.left=(r.right-130)+'px'; el.style.top=(r.top+8)+'px';
+  el.style.color=delta>0?'var(--good)':'var(--bad)'; el.textContent=(delta>0?'+':'')+fmt(delta);
+  document.body.appendChild(el); setTimeout(()=>el.remove(),1400);
+}
+
+/* ================= EKONOMI ================= */
+const ownsGroup=(pid,g)=>TILES.every((t,i)=>t.t!=='prop'||t.g!==g||S.own[i].owner===pid);
+const countType=(pid,tt)=>TILES.filter((t,i)=>t.t===tt&&S.own[i].owner===pid).length;
+const canRenov=(pid,i)=>{ const t=TILES[i],o=S.own[i]; return t.t==='prop'&&o.owner===pid&&o.level<R.maxRenov&&(!R.renovNeedsSet||ownsGroup(pid,t.g)); };
+const sellValue=i=>{ const t=TILES[i],o=S.own[i]; return Math.floor((t.price+o.level*(t.build||0))*R.sellPct/100); };
+function rentFor(i){ const base=rentBase(i), o=S.own[i]; if(o.owner===null) return base; return Math.round(base*(1+rankOf(S.players[o.owner]).rentPct/100)); }
+function rentBase(i){
+  const t=TILES[i], o=S.own[i];
+  if(t.t==='prop'){ if(o.level>0) return t.rent[o.level]; return t.rent[0]*(ownsGroup(o.owner,t.g)?R.monopolyMult:1); }
+  if(t.t==='trans') return t.rentBase*Math.pow(2,countType(o.owner,'trans')-1);
+  if(t.t==='util') return S.lastSum*(countType(o.owner,'util')>=2?t.mul2:t.mul1);
+  return 0;
+}
+function gain(p,amt){ p.cash+=amt; render(); floatMoney(p,amt); }
+function liquidate(p,need){
+  let guard=80;
+  while(p.cash<need&&guard--){
+    const mine=S.own.map((o,i)=>({o,i,t:TILES[i]})).filter(x=>x.o.owner===p.id);
+    const built=mine.filter(x=>x.o.level>0).sort((a,b)=>a.t.build-b.t.build)[0];
+    if(built){ built.o.level--; const v=Math.floor(built.t.build*R.sellPct/100); p.cash+=v; log(`🏚️ Ekspansi ${esc(built.t.name)} milik ${pn(p)} dibongkar paksa, laku ${fmt(v)}.`); continue; }
+    const cheap=mine.sort((a,b)=>a.t.price-b.t.price)[0];
+    if(cheap){ const v=Math.floor(cheap.t.price*R.sellPct/100); cheap.o.owner=null; p.cash+=v; log(`📜 ${esc(cheap.t.name)} milik ${pn(p)} disita dan dilelang ke bank seharga ${fmt(v)}.`); toast(`📜 ${esc(p.name)} terpaksa menjual ${esc(cheap.t.name)}`,'bad'); continue; }
+    break;
+  }
+}
+function charge(p,amount,creditor){
+  amount=Math.round(amount); if(amount<=0||p.bankrupt) return 0;
+  if(p.cash<amount) liquidate(p,amount);
+  const paid=Math.min(amount,Math.max(0,p.cash)); p.cash-=paid;
+  if(creditor==='pot') S.pot+=paid; else if(creditor&&typeof creditor==='object') creditor.cash+=paid;
+  render(); floatMoney(p,-paid); if(creditor&&typeof creditor==='object') floatMoney(creditor,paid);
+  if(paid<amount) bankrupt(p);
+  return paid;
+}
+function bankrupt(p){
+  p.bankrupt=true; p.jail=false; S.own.forEach(o=>{ if(o.owner===p.id){o.owner=null;o.level=0;} });
+  log(`💀 ${pn(p)} bangkrut. Asetnya disita negara, ajudannya pindah ke calon lain.`); toast(`💀 ${esc(p.name)} bangkrut!`,'bad');
+  render(); checkEnd();
+}
+function checkEnd(){ if(S.players.filter(p=>!p.bankrupt).length<=1&&!S.over) endGame('last'); }
+function checkTarget(){
+  if(!R.targetWealth||S.over) return false;
+  if(S.players.some(p=>!p.bankrupt&&netWorth(p)>=R.targetWealth)){ endGame('target'); return true; }
+  return false;
+}
+function goJail(p){ p.pos=9; p.jail=true; p.jailTurns=0; p.doubles=0; log(`🔒 ${pn(p)} masuk Rutan.`); toast(`🔒 ${esc(p.name)} masuk Rutan`,'bad'); render(); }
+function payJail(p){ if(S.busy||!p.jail) return; charge(p,R.jailFine,fineDest()); if(!p.bankrupt){ p.jail=false; p.jailTurns=0; log(`💸 ${pn(p)} membayar uang jaminan ${fmt(R.jailFine)} dan keluar sambil melambaikan tangan ke kamera.`); toast('💸 Keluar dengan uang jaminan'); } render(); }
+function useOrdal(p){ if(S.busy||!p.jail||p.ordal<1) return; p.ordal--; p.jail=false; p.jailTurns=0; log(`🎫 ${pn(p)} menelepon Orang Dalam. Statusnya mendadak jadi tahanan kota.`); toast('🎫 Ordal bekerja!','good'); render(); }
+function inflate(){
+  const f=1+R.inflationPct/100; if(f===1) return;
+  TILES.forEach(t=>{ ['price','build','rentBase','mul1','mul2','amount'].forEach(k=>{ if(typeof t[k]==='number'&&t[k]>0) t[k]=round25(t[k]*f); }); if(t.rent) t.rent=t.rent.map(x=>round25(x*f)); });
+  if(R.salaryFollowsInflation) R.salary=round25(R.salary*f);
+  log(`📈 Inflasi ${R.inflationPct}%! Harga aset, sewa, dan pungutan naik.${R.salaryFollowsInflation?' Gaji ikut naik.':' Gaji? Tetap. Sabar.'}`,true);
+  toast(`📈 Inflasi ${R.inflationPct}%: semua harga naik`,'bad');
+  buildBoard();
+}
+
+/* ================= GERAK ================= */
+async function moveForward(p,n){
+  for(let k=0;k<n;k++){ p.pos=(p.pos+1)%BOARD_N;
+    if(p.pos===0){ const tj=rankOf(p).salary, tot=R.salary+tj; p.cash+=tot; log(`💼 ${pn(p)} lewat SETORAN, terima ${fmt(R.salary)}${tj?` + tunjangan jabatan ${fmt(tj)}`:''}.`); floatMoney(p,tot); }
+    renderTiles(); await sleep(170); }
+  render();
+}
+async function moveBack(p,n){ for(let k=0;k<n;k++){ p.pos=(p.pos-1+BOARD_N)%BOARD_N; renderTiles(); await sleep(170);} render(); }
+async function moveTo(p,target){ await moveForward(p,(target-p.pos+BOARD_N)%BOARD_N); }
+
+/* ================= RESOLUSI KOTAK ================= */
+async function resolveTile(p){
+  if(p.bankrupt||S.over) return;
+  const i=p.pos, t=TILES[i]; render();
+  if(isAsset(t)){
+    const o=S.own[i];
+    if(o.owner===null) await offerBuy(p,i);
+    else if(o.owner!==p.id){
+      const ow=S.players[o.owner];
+      if(ow.jail&&!R.rentInJail){ log(`${pn(p)} singgah di ${esc(t.name)}, tapi pemiliknya sedang di sel. Sewa gratis!`); toast('🔓 Pemilik di sel, sewa gratis','good'); }
+      else { const r=rentFor(i); log(`🏷️ ${pn(p)} singgah di ${esc(t.name)} milik ${pn(ow)} dan membayar sewa ${fmt(r)}.`); toast(`${p.char} bayar sewa ${fmt(r)} ke ${esc(ow.name)}`,'bad'); charge(p,r,ow); }
+    } else log(`${pn(p)} mampir ke asetnya sendiri, ${esc(t.name)}. Ngopi dulu.`);
+  } else if(t.t==='tax'){
+    log(`${esc(t.icon)} ${pn(p)} kena ${esc(t.name)} ${fmt(t.amount)}.${R.finesToPot?' Masuk ke dana hibah.':''}`); toast(`${esc(t.icon)} ${esc(t.name)}: ${fmt(-t.amount)}`,'bad'); charge(p,t.amount,fineDest());
+  } else if(t.t==='takdir'||t.t==='musibah'){ await drawCard(p,t.t); }
+  else if(t.t==='elect'){ await runElection(p,t); }
+  else if(t.k==='go'){ if(R.landGoBonus>0){ log(`🎯 ${pn(p)} berhenti tepat di SETORAN, dapat bonus ${fmt(R.landGoBonus)}.`); gain(p,R.landGoBonus); } }
+  else if(t.k==='bansos'){
+    if(S.pot>0){ const got=Math.floor(S.pot*(100-R.bansosCutPct)/100), cut=S.pot-got; S.pot=0;
+      log(`🎁 ${pn(p)} mencairkan dana hibah ${fmt(got)} lewat yayasan kenalan.${cut?` Sebanyak ${fmt(cut)} jadi "biaya koordinasi".`:' Utuh, tanpa potongan. Mencurigakan.'}`); toast(`🎁 Hibah cair ${fmt(got)}`,'good'); gain(p,got); }
+    else { log(`🎁 ${pn(p)} mengajukan dana hibah, tapi kasnya kosong. Coba lagi tahun anggaran depan.`); toast('🎁 Dana hibah kosong'); }
+  } else if(t.k==='gojail'){ toast(`🚨 ${esc(t.name)}`,'bad'); log(`🚨 ${pn(p)} kena ${esc(t.name)} Rompi oranye sudah disiapkan.`); goJail(p); if(R.ottDemote&&p.rank>0) setRank(p,-1,'karena dicopot partai'); }
+  else if(t.k==='jail'){ log(`${pn(p)} cuma mampir ke ${esc(t.name)}, membesuk kolega separtai.`); }
+  render();
+}
+async function offerBuy(p,i){
+  const t=TILES[i], mand=R.buyMode==='mandatory';
+  if(p.isBot){ await sleep(450);
+    if(mand){ if(p.cash>=t.price) buy(p,i); else log(`${pn(p)} tidak mampu membeli ${esc(t.name)}.`); return; }
+    const wantsGroup=t.t==='prop'&&TILES.some((x,j)=>x.t==='prop'&&x.g===t.g&&j!==i&&S.own[j].owner===p.id);
+    if(p.cash-t.price>=R.startCash*(wantsGroup?0.04:0.1)) buy(p,i); else log(`${pn(p)} melewatkan ${esc(t.name)}. "Nanti dulu, nunggu harga turun."`);
+    return; }
+  const res=await showDeed(i,{buy:true,player:p,mandatory:mand});
+  if(res==='buy') buy(p,i); else log(`${pn(p)} ${mand?'tidak mampu membeli':'melewatkan'} ${esc(t.name)}.`);
+}
+function buy(p,i){ const t=TILES[i]; if(p.cash<t.price) return; p.cash-=t.price; S.own[i].owner=p.id; log(`🏡 ${pn(p)} membeli ${esc(t.name)} seharga ${fmt(t.price)}.`); toast(`🏡 ${esc(p.name)} membeli ${esc(t.name)}`,'good'); render(); floatMoney(p,-t.price); }
+
+/* ================= KARTU ================= */
+function draw(kind){ if(!S.cards[kind].length) return null; if(!S.decks[kind].length) S.decks[kind]=shuffle(S.cards[kind].slice()); return S.decks[kind].pop(); }
+function effCard(c){ const m=(R?R.cardMultPct:100)/100, o={...c}; o.vote=c.vote||0;
+  if(c.k==='money'||c.k==='each') o.v=Math.round(c.v*m); if(c.k==='repair'){ o.lv=Math.round(c.lv*m); o.pp=Math.round(c.pp*m); } return o; }
+function effLabel(c,tiles){ const e=effLabel0(c,tiles); if(c.vote){ const vs=`${c.vote>0?'+':''}${c.vote} suara`; e.t=e.t?`${e.t}, ${vs}`:vs; if(!e.cls) e.cls=c.vote>0?'pos':'neg'; } return e; }
+function effLabel0(c,tiles){ tiles=tiles||TILES;
+  switch(c.k){
+    case 'vote': return {t:'',cls:''};
+    case 'rankUp': return {t:'Naik satu jenjang jabatan',cls:'pos'};
+    case 'rankDown': return {t:'Turun satu jenjang jabatan',cls:'neg'};
+    case 'money': return {t:(c.v>0?'+':'')+fmt(c.v),cls:c.v>0?'pos':c.v<0?'neg':''};
+    case 'percent': return {t:`${c.v>0?'+':'−'}${Math.abs(c.v)}% uang tunai`,cls:c.v>0?'pos':'neg'};
+    case 'each': return c.v>0?{t:`+${fmt(c.v)} dari tiap pemain`,cls:'pos'}:{t:`${fmt(c.v)} ke tiap pemain`,cls:'neg'};
+    case 'repair': return {t:`−${fmtS(c.lv)}/tingkat, −${fmtS(c.pp)}/aset`,cls:'neg'};
+    case 'moveTo': return {t:`Pindah ke ${(tiles[c.to]||{}).name||'?'}`,cls:''};
+    case 'moveBy': return {t:c.n>=0?`Maju ${c.n} langkah`:`Mundur ${-c.n} langkah`,cls:c.n<0?'neg':''};
+    case 'nearest': return {t:`Maju ke ${TTYPES[c.type]} terdekat`,cls:''};
+    case 'jail': return {t:'Masuk Rutan',cls:'neg'};
+    case 'ordal': return {t:'Simpan kartu ini',cls:'pos'};
+  } return {t:'',cls:''};
+}
+async function drawCard(p,kind){
+  const raw=draw(kind); const name=kind==='takdir'?'Kartu Takdir':'Kartu Musibah';
+  if(!raw){ log(`${name} sedang habis. ${pn(p)} selamat kali ini.`); toast(`Tumpukan ${name} kosong`); return; }
+  const card=effCard(raw); const deckEl=kind==='takdir'?$('#deckT'):$('#deckM');
+  deckEl.classList.remove('flash'); deckEl.offsetHeight; deckEl.classList.add('flash');
+  log(`${kind==='takdir'?'🔮':'⚠️'} ${name} untuk ${pn(p)}: “${esc(card.title)}”.`);
+  await showCard(kind,card,p); await applyCard(p,card);
+}
+async function applyCard(p,c){
+  switch(c.k){
+    case 'money': if(c.v>=0) gain(p,c.v); else charge(p,-c.v,fineDest()); break;
+    case 'percent': { const amt=Math.round(Math.max(0,p.cash)*Math.abs(c.v)/100); if(c.v>=0) gain(p,amt); else charge(p,amt,fineDest()); log(`${pn(p)} ${c.v>=0?'menerima':'kehilangan'} ${fmt(amt)}.`); break; }
+    case 'each': for(const q of S.players){ if(q===p||q.bankrupt) continue; if(c.v>0) charge(q,c.v,p); else charge(p,-c.v,q); if(p.bankrupt||S.over) break; } break;
+    case 'repair': { let lv=0,n=0; S.own.forEach(o=>{ if(o.owner===p.id){ n++; lv+=o.level; } }); const cost=lv*c.lv+n*c.pp;
+      if(cost>0){ log(`${pn(p)} membayar ${fmt(cost)} (${lv} tingkat renovasi, ${n} aset).`); charge(p,cost,fineDest()); }
+      else log(`${pn(p)} tidak punya aset, jadi aman. Satu-satunya keuntungan jadi miskin.`); break; }
+    case 'moveTo': await moveTo(p,c.to); await resolveTile(p); break;
+    case 'moveBy': if(c.n>0) await moveForward(p,c.n); else if(c.n<0) await moveBack(p,-c.n); await resolveTile(p); break;
+    case 'nearest': { let j=-1; for(let k=1;k<=BOARD_N;k++){ const x=(p.pos+k)%BOARD_N; if(TILES[x].t===c.type){ j=x; break; } }
+      if(j<0){ log(`Tidak ada kotak ${TTYPES[c.type]} di papan.`); break; } await moveTo(p,j); await resolveTile(p); break; }
+    case 'jail': goJail(p); break;
+    case 'ordal': p.ordal++; render(); break;
+    case 'rankUp': if(!setRank(p,1,'lewat jalur kartu')) log(`${pn(p)} sudah di puncak, tidak bisa naik lagi.`); if(R.rankWin&&p.rank>=topRank()&&!S.over){ endGame('rank'); return; } break;
+    case 'rankDown': if(!setRank(p,-1,'')) log(`${pn(p)} belum punya jabatan untuk dicopot. Untung.`); break;
+  }
+  if(c.vote&&!p.bankrupt&&!S.over){ addVotes(p,c.vote); render(); }
+}
+
+/* ================= OVERLAY UMUM ================= */
+function overlay(html,cls=''){ const ov=document.createElement('div'); ov.className='overlay '+cls; ov.innerHTML=html; document.body.appendChild(ov); return ov; }
+function showCard(kind,card,p){
+  return new Promise(res=>{
+    const dc=kind==='takdir'?'var(--takdir)':'var(--musibah)', name=kind==='takdir'?'Kartu Takdir':'Kartu Musibah', e=effLabel(card);
+    const ov=overlay(`<div class="cardstage" style="--dc:${dc}"><div class="card3d"><div class="card-inner">
+        <div class="cface cback"><div>${kind==='takdir'?'🔮':'⚠️'}</div>${name}</div>
+        <div class="cface cfront"><div class="chead"><span>${name}</span><span>${p.char}</span></div>
+          <div class="cbody"><h2>${esc(card.title)}</h2><p>${esc(card.text)}</p><div class="eff ${e.cls}">${esc(e.t)}</div></div></div>
+      </div></div><button class="primary" id="cardOk" style="visibility:hidden">${p.isBot?`${esc(p.name)} pasrah…`:(kind==='takdir'?'Terima takdir':'Pasrah')}</button></div>`);
+    const inner=ov.querySelector('.card-inner'), ok=ov.querySelector('#cardOk'); let done=false;
+    const close=()=>{ if(done) return; done=true; ov.remove(); res(); };
+    setTimeout(()=>inner.classList.add('flipped'),350); setTimeout(()=>{ ok.style.visibility='visible'; ok.focus(); },1000);
+    ok.onclick=close; if(p.isBot) setTimeout(close,2600);
+  });
+}
+function deedHTML(i){
+  const t=TILES[i], o=S?S.own[i]:{owner:null,level:0};
+  const color=t.t==='prop'?gColor(t.g):'#37474f';
+  let rows='';
+  if(t.t==='prop'){
+    rows=`<tr><td>Kelompok</td><td>${esc((GROUPS[t.g]||{}).name||'')}</td></tr><tr><td>Sewa dasar</td><td>${fmt(t.rent[0])}</td></tr>
+      <tr><td>Sewa jika kelompok lengkap</td><td>${fmt(t.rent[0]*R.monopolyMult)}</td></tr>`;
+    for(let k=1;k<=R.maxRenov;k++) rows+=`<tr><td>${'🏠'.repeat(k)} Ekspansi ${k}</td><td>${fmt(t.rent[k])}</td></tr>`;
+    if(R.maxRenov>0) rows+=`<tr><td>Biaya per ekspansi</td><td>${fmt(t.build)}</td></tr>`;
+    rows+=`<tr><td>Nilai jual ke bank</td><td>${fmt(Math.floor(t.price*R.sellPct/100))}</td></tr>`;
+  } else if(t.t==='trans') rows=[1,2,3,4].map(n=>`<tr><td>Mahar jika pemilik punya ${n} partai</td><td>${fmt(t.rentBase*Math.pow(2,n-1))}</td></tr>`).join('');
+  else if(t.t==='util') rows=`<tr><td>Pemilik punya 1 jasa politik</td><td>${fmt(t.mul1)} × dadu</td></tr><tr><td>Pemilik punya 2 jasa politik</td><td>${fmt(t.mul2)} × dadu</td></tr>`;
+  let owner='';
+  if(S){ owner=o.owner===null?`Belum dimiliki. Harga ${fmt(t.price)}.`:`Pemilik: ${S.players[o.owner].char} ${esc(S.players[o.owner].name)}${o.level?`, renovasi ${o.level}`:''}. Sewa saat ini: ${t.t==='util'?'tergantung dadu':fmt(rentFor(i))}${rankOf(S.players[o.owner]).rentPct?` (termasuk bonus jabatan ${rankOf(S.players[o.owner]).rentPct}%)`:''}.`; }
+  else owner=`Harga ${fmt(t.price)}.`;
+  return `<div class="deed"><div class="deed-h" style="background:${color}"><small>Akta kepemilikan (atas nama keluarga)</small><h2>${t.t!=='prop'&&t.icon?esc(t.icon)+' ':''}${esc(t.name)}</h2></div>
+    <div class="deed-b"><p class="flav">${esc(t.flavor)}</p><table>${rows}</table><div class="owner">${owner}</div></div>`;
+}
+function showDeed(i,opts={}){
+  return new Promise(res=>{
+    const t=TILES[i]; let acts;
+    if(opts.buy){ const can=opts.player.cash>=t.price;
+      if(opts.mandatory) acts=can?`<button class="primary" id="dBuy">Beli (wajib) ${fmt(t.price)}</button>`:'<button id="dSkip">Uang tidak cukup, lewati</button>';
+      else acts=`<button id="dSkip">Lewati</button><button class="primary" id="dBuy" ${can?'':'disabled'}>${can?`Beli ${fmt(t.price)}`:'Uang tidak cukup'}</button>`; }
+    else acts='<button id="dClose">Tutup</button>';
+    const ov=overlay(deedHTML(i)+`<div class="actions">${acts}</div></div>`);
+    const done=v=>{ ov.remove(); res(v); };
+    const b=ov.querySelector('#dBuy'), s=ov.querySelector('#dSkip'), c=ov.querySelector('#dClose');
+    if(b) b.onclick=()=>done('buy'); if(s) s.onclick=()=>done('skip');
+    if(c){ c.onclick=()=>done('close'); ov.onclick=e=>{ if(e.target===ov) done('close'); }; }
+    (b&&!b.disabled?b:(s||c)).focus();
+  });
+}
+function showTileInfo(i){
+  const t=TILES[i]; if(isAsset(t)){ showDeed(i); return; }
+  let desc=t.desc||t.flavor||'';
+  if(t.t==='takdir') desc='Ambil satu Kartu Takdir. Nasib bisa naik, bisa juga dibobol APK undangan nikah.';
+  if(t.t==='musibah') desc='Ambil satu Kartu Musibah. Sesekali isinya kabar baik, tapi jangan berharap.';
+  if(t.t==='tax') desc=`${t.flavor||''} Bayar ${fmt(t.amount)}.`;
+  if(t.k==='go') desc+=` Setoran saat ini ${fmt(R.salary)} ditambah tunjangan jabatan${R.landGoBonus?`, bonus berhenti tepat ${fmt(R.landGoBonus)}`:''}.`;
+  if(t.k==='jail') desc+=` Uang jaminan ${fmt(R.jailFine)}, maksimal ${R.jailMaxTurns} giliran.`;
+  if(t.k==='bansos') desc+=` Dana sekarang ${fmt(S?S.pot:R.bansosStart)}, potongan koordinator ${R.bansosCutPct}%.`;
+  if(t.t==='elect') desc=`${t.flavor||''} Berhenti di sini untuk nyalon ke jenjang jabatan berikutnya.`;
+  const ov=overlay(`<div class="sheet" style="max-width:380px;text-align:center"><div style="font-size:3rem">${esc(t.icon)}</div><h2>${esc(t.name)}</h2><p>${esc(desc)}</p><div class="actions" style="justify-content:center"><button id="xClose">Tutup</button></div></div>`);
+  ov.querySelector('#xClose').onclick=()=>ov.remove(); ov.onclick=e=>{ if(e.target===ov) ov.remove(); };
+}
+function openManage(p){
+  if(!S||S.busy||p.isBot) return;
+  const ov=overlay('<div class="sheet"></div>'); const sh=ov.firstChild;
+  const draw=()=>{
+    const mine=S.own.map((o,i)=>({o,i,t:TILES[i]})).filter(x=>x.o.owner===p.id);
+    sh.innerHTML=`<h2>Kelola aset ${p.char} ${esc(p.name)}</h2><p class="psub">Uang tunai ${fmt(p.cash)}. ${R.maxRenov?`Ekspansi usaha maksimal ${R.maxRenov} tingkat${R.renovNeedsSet?', hanya jika kamu menguasai semua aset satu warna':''}.`:'Ekspansi usaha tidak diizinkan di aturan ini.'} Menjual ke bank memberi ${R.sellPct}% nilai.</p>
+      <div class="mlist">${mine.length?mine.map(({o,i,t})=>{
+        const canB=canRenov(p.id,i)&&p.cash>=t.build;
+        return `<div class="mrow"><span class="sw" style="background:${t.t==='prop'?gColor(t.g):'var(--line)'}"></span><div class="mi"><b>${t.t!=='prop'?esc(t.icon)+' ':''}${esc(t.name)}</b><small>${o.level?'🏠'.repeat(o.level)+' ':''}Sewa ${t.t==='util'?'tergantung dadu':fmt(rentFor(i))}</small></div>
+          ${t.t==='prop'&&R.maxRenov?`<button data-b="${i}" ${canB?'':'disabled'}>Ekspansi ${fmt(t.build)}</button>`:''}<button class="ghost" data-s="${i}">Jual +${fmt(sellValue(i))}</button></div>`;
+      }).join(''):'<p>Belum punya aset. Semua uang masih di rekening, menunggu musim kampanye.</p>'}</div>
+      <div class="actions"><button class="primary" id="mClose">Selesai</button></div>`;
+    sh.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{ const i=+b.dataset.b,t=TILES[i]; if(!canRenov(p.id,i)||p.cash<t.build) return; p.cash-=t.build; S.own[i].level++; log(`🔨 ${pn(p)} mengekspansi ${esc(t.name)} ke tingkat ${S.own[i].level}.`); render(); floatMoney(p,-t.build); draw(); });
+    sh.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{ const i=+b.dataset.s,t=TILES[i],o=S.own[i]; const v=sellValue(i); o.owner=null; o.level=0; p.cash+=v; log(`💼 ${pn(p)} menjual ${esc(t.name)} ke bank seharga ${fmt(v)}.`); render(); floatMoney(p,v); draw(); });
+    sh.querySelector('#mClose').onclick=()=>{ ov.remove(); checkTarget(); };
+  };
+  draw(); ov.onclick=e=>{ if(e.target===ov){ ov.remove(); checkTarget(); } };
+}
+function rulesSummary(r){
+  const a=[`modal ${fmt(r.startCash)}`,`setoran ${fmt(r.salary)}`];
+  if(r.rankWin) a.push('menang di kursi tertinggi'); if(r.roundLimit) a.push(`${r.roundLimit} putaran`);
+  if(!r.fajarBonus) a.push('serangan fajar tak berguna'); if(!r.ottDemote) a.push('kebal OTT');
+  if(r.targetWealth) a.push(`target ${fmt(r.targetWealth)}`);
+  if(r.inflationEvery) a.push(`inflasi ${r.inflationPct}% tiap ${r.inflationEvery} putaran`);
+  if(r.buyMode==='mandatory') a.push('wajib beli');
+  if(r.startAssets) a.push(`${r.startAssets} aset awal`);
+  if(r.cardMultPct!==100) a.push(`kartu ×${r.cardMultPct/100}`);
+  return a.join(', ');
+}
+function showRules(){
+  const r=S?R:activePreset().rules, rk=S?RANKS:CFG.ranks;
+  const ov=overlay(`<div class="sheet rules"><h2>Aturan main jilid 2</h2>
+   <p>Kalian adalah rakyat jelata yang mendadak jadi Orang Kaya Baru setelah tanah warisan kena ganti untung jalan tol. Setiap pemain mulai dengan ${fmt(r.startCash)}, lalu menerima setoran usaha ${fmt(r.salary)} ditambah tunjangan jabatan setiap melewati SETORAN.</p>
+   <p><b>Tujuan:</b> ${r.rankWin?`naik jabatan sampai ${esc(rk[rk.length-1].name)}. Pemain pertama yang duduk di kursi itu langsung menang.`:'kumpulkan kekayaan sebanyak-banyaknya.'}${r.targetWealth?` Pemain pertama dengan kekayaan bersih ${fmt(r.targetWealth)} juga langsung menang.`:''}${r.roundLimit?` Setelah ${r.roundLimit} putaran, pemenang ditentukan dari ${r.rankWin?'jabatan tertinggi, lalu ':''}kekayaan bersih.`:''}</p>
+   <p><b>Naik jabatan:</b> berhenti di kotak pemilu (🗳️ Pilkada, Pemilu, atau Bursa Kabinet) untuk nyalon ke jenjang berikutnya. Bayar mahar dan modal kampanye, lalu kocok dua dadu. Suaramu = angka dadu + elektabilitas + basis aset (setiap aset Media dan Basis massa menambah suara)${r.fajarBonus?` + ${r.fajarBonus} jika memakai serangan fajar`:''}. Kalau mencapai target, kamu terpilih.${r.votesReset?' Elektabilitas habis terpakai setelah pemilu, menang atau kalah.':''}</p>
+   <p><b>Keuntungan jabatan:</b> tunjangan saat lewat SETORAN dan bonus sewa untuk semua asetmu, karena izin dan proyek "lebih lancar".</p>
+   <p>Kartu Takdir dan Musibah bisa mengubah uang, elektabilitas, bahkan jabatanmu. ${r.finesToPot?`Pungutan dan denda masuk ke dana hibah, yang bisa dicairkan di kotak Dana Hibah (dipotong ${r.bansosCutPct}%).`:''} ${r.ottDemote?'Kena OTT berarti masuk Rutan dan jabatan turun satu jenjang.':'Kena OTT hanya membuatmu masuk Rutan.'} Keluar dari Rutan dengan dadu kembar, uang jaminan ${fmt(r.jailFine)}, atau Kartu Ordal.</p>
+   <p class="psub">Koleksi aturan aktif: ${esc(S?S.ruleName:activePreset().name)}. Semua bisa diubah di Studio. Semua tokoh, partai, lembaga, dan kejadian di game ini fiktif dan satir. Kalau terasa mirip kenyataan, itu salah kenyataannya.</p>
+   <div class="actions"><button class="primary" id="rClose">Mengerti</button></div></div>`);
+  ov.querySelector('#rClose').onclick=()=>ov.remove(); ov.onclick=e=>{ if(e.target===ov) ov.remove(); };
+}
+function pAtLeast(k){ let c=0; for(let a=1;a<=6;a++) for(let b=1;b<=6;b++) if(a+b>=k) c++; return c/36; }
+const pct=x=>Math.round(x*100)+'%';
+function showLadder(){
+  const rk=S?RANKS:CFG.ranks;
+  const ov=overlay(`<div class="sheet" style="max-width:520px"><h2>🪜 Tangga jabatan</h2><p class="psub">Naik jabatan lewat kotak pemilu. Makin tinggi, makin mahal maharnya, makin besar tunjangan dan bonus sewanya.</p>
+    <div class="ladder">${rk.map((r,i)=>{ const who=S?S.players.filter(p=>!p.bankrupt&&p.rank===i).map(p=>`<span class="who" style="--pc:${p.color}">${p.char} ${esc(p.name)}</span>`).join(''):'';
+      return `<div class="lstep"><div class="lic">${esc(r.icon)}</div><div style="flex:1"><b>${i}. ${esc(r.name)}</b><small>${i===0?'Titik awal semua pemain':`Mahar ${fmt(r.cost)}, serangan fajar ${fmt(r.fajar)}, target suara ${r.target}`}${r.salary?`. Tunjangan ${fmt(r.salary)}, bonus sewa ${r.rentPct}%`:''}</small>${who?`<div class="whos">${who}</div>`:''}</div></div>`; }).reverse().join('')}</div>
+    <div class="actions"><button class="primary" id="lClose">Tutup</button></div></div>`);
+  ov.querySelector('#lClose').onclick=()=>ov.remove(); ov.onclick=e=>{ if(e.target===ov) ov.remove(); };
+}
+function showElection(p,next,bonus){
+  return new Promise(res=>{
+    const base=p.votes+bonus, need=next.target-base, pr=pAtLeast(need), prF=pAtLeast(need-R.fajarBonus);
+    const canRun=p.cash>=next.cost, canF=p.cash>=next.cost+next.fajar;
+    const ov=overlay(`<div class="sheet" style="max-width:480px"><div style="font-size:2.6rem;text-align:center">${esc(next.icon)}</div>
+      <h2 style="text-align:center">Nyalon jadi ${esc(next.name)}?</h2>
+      <p class="psub" style="text-align:center">Jabatanmu sekarang: ${rankOf(p).icon} ${esc(rankOf(p).name)}</p>
+      <table class="etab"><tr><td>Mahar partai dan modal kampanye</td><td>${fmt(next.cost)}</td></tr>
+        <tr><td>Serangan fajar (opsional)</td><td>${fmt(next.fajar)}, +${R.fajarBonus} suara</td></tr>
+        <tr><td>Target suara</td><td>${next.target}</td></tr>
+        <tr><td>Elektabilitas kamu</td><td>${p.votes>0?'+':''}${p.votes}</td></tr>
+        <tr><td>Basis aset (media dan massa)</td><td>+${bonus}</td></tr>
+        <tr><td>Peluang menang</td><td>${pct(pr)}${R.fajarBonus?` (dengan serangan fajar ${pct(prF)})`:''}</td></tr></table>
+      <p class="psub">Suara = dua dadu + elektabilitas + basis aset${R.fajarBonus?' + serangan fajar':''}. Kalah berarti uang kampanye hangus.</p>
+      <div class="actions"><button id="eSkip">Tidak dulu</button><button id="eRun" ${canRun?'':'disabled'}>Nyalon ${fmt(next.cost)}</button>${R.fajarBonus?`<button class="primary" id="eFajar" ${canF?'':'disabled'}>Nyalon + serangan fajar ${fmt(next.cost+next.fajar)}</button>`:''}</div></div>`);
+    const done=v=>{ ov.remove(); res(v); };
+    ov.querySelector('#eSkip').onclick=()=>done('skip'); ov.querySelector('#eRun').onclick=()=>done('run');
+    const f=ov.querySelector('#eFajar'); if(f) f.onclick=()=>done('fajar');
+  });
+}
+function showElectResult(p,win,next,total,detail){
+  return new Promise(res=>{
+    const ov=overlay(`<div class="sheet" style="max-width:420px;text-align:center"><div style="font-size:3rem">${win?'🎉':'😵'}</div>
+      <h2>${win?`Terpilih sebagai ${esc(next.name)}!`:'Kalah pemilu'}</h2><p>${detail} = <b>${total}</b>, target ${next.target}.</p>
+      <p class="psub">${win?'Selamat. Saatnya membalas budi para pendukung, terutama yang membiayai.':'Baliho diturunkan, utang kampanye tetap jalan. Coba lagi di pemilu berikutnya.'}</p>
+      <div class="actions" style="justify-content:center"><button class="primary" id="erOk">${win?'Siap mengabdi':'Pasrah'}</button></div></div>`);
+    ov.querySelector('#erOk').onclick=()=>{ ov.remove(); res(); };
+  });
+}
+async function electionSeason(){
+  S.busy=true; S.hint='Pemilu serentak sedang berlangsung…'; render();
+  log(`🗳️ PEMILU SERENTAK digelar di awal putaran ${S.round}! Semua calon boleh nyalon ke jenjang berikutnya.`,true);
+  toast('🗳️ Pemilu serentak dimulai!','good'); await sleep(700);
+  for(const p of S.players){
+    if(p.bankrupt||S.over) continue;
+    if(p.jail){ log(`${pn(p)} sedang di Rutan, jadi tidak bisa nyalon kali ini. Konon ada yang tetap mencoba.`); continue; }
+    if(!RANKS[p.rank+1]) continue;
+    await runElection(p,{name:'Pemilu serentak'});
+  }
+  S.busy=false; S.hint='';
+}
+async function runElection(p,t){
+  const next=RANKS[p.rank+1];
+  if(!next){ log(`${pn(p)} singgah di ${esc(t.name)}, tapi sudah di puncak jabatan. Cukup jadi tamu kehormatan.`); return; }
+  const bonus=assetVotes(p); let choice;
+  if(p.isBot){ await sleep(450); const sc=R.startCash;
+    if(R.fajarBonus&&p.cash-next.cost-next.fajar>=sc*0.15) choice='fajar'; else if(p.cash-next.cost>=sc*0.2) choice='run'; else choice='skip'; }
+  else choice=await showElection(p,next,bonus);
+  if(choice==='skip'){ log(`${pn(p)} belum mau nyalon jadi ${esc(next.name)}. "Belum ada bisikan dari rakyat."`); return; }
+  const fajar=choice==='fajar', cost=next.cost+(fajar?next.fajar:0);
+  if(p.cash<cost){ log(`${pn(p)} tidak punya cukup modal untuk nyalon.`); return; }
+  charge(p,cost,fineDest());
+  log(`🗳️ ${pn(p)} nyalon jadi ${esc(next.name)} dengan modal ${fmt(cost)}${fajar?', termasuk amplop serangan fajar':''}.`);
+  const d1=rnd6(), d2=rnd6(); await rollDice(d1,d2);
+  const total=d1+d2+p.votes+bonus+(fajar?R.fajarBonus:0);
+  const detail=`Dadu ${d1+d2} + elektabilitas ${p.votes} + basis aset ${bonus}${fajar?` + serangan fajar ${R.fajarBonus}`:''}`;
+  const win=total>=next.target;
+  log(`${detail} = <b>${total}</b> (target ${next.target}).`);
+  if(R.votesReset) p.votes=0;
+  if(win) setRank(p,1,'lewat pemilu'); else { log(`😵 ${pn(p)} kalah. Baliho diturunkan, utang kampanye tetap jalan.`); toast(`😵 ${esc(p.name)} kalah pemilu`,'bad'); }
+  render();
+  if(!p.isBot) await showElectResult(p,win,next,total,detail); else await sleep(600);
+  if(win&&R.rankWin&&p.rank>=topRank()&&!S.over) endGame('rank');
+}
+function confirmNew(){
+  if(!gameLive()){ showSetup(); return; }
+  const ov=overlay(`<div class="sheet" style="max-width:380px"><h2>Mulai permainan baru?</h2><p>Permainan yang sedang berjalan akan hilang.</p><div class="actions"><button id="nNo">Batal</button><button class="primary" id="nYes">Mulai baru</button></div></div>`);
+  ov.querySelector('#nNo').onclick=()=>ov.remove();
+  ov.querySelector('#nYes').onclick=()=>{ ov.remove(); clearTimeout(S.botTimer); S.over=true; showSetup(); };
+}
+
+/* ================= STUDIO KUSTOMISASI ================= */
+const ST={tab:'tiles',open:null,preset:null,io:''};
+const getPath=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);
+function setPath(o,p,v){ const ks=p.split('.'); let x=o; for(let i=0;i<ks.length-1;i++) x=x[ks[i]]; x[ks[ks.length-1]]=v; }
+function F(label,path,t,o={}){
+  const v=getPath(CFG,path); const full=o.full?' full':'';
+  const st=o.struct?' data-struct="1"':'';
+  if(t==='bool') return `<label class="fld chk${full}"><input type="checkbox" data-p="${path}" data-t="bool"${st} ${v?'checked':''}><span>${label}</span></label>`;
+  if(t==='textarea') return `<label class="fld full"><span class="l">${label}</span><textarea data-p="${path}" data-t="text" maxlength="${o.max||400}">${esc(v)}</textarea></label>`;
+  if(t==='select') return `<label class="fld${full}"><span class="l">${label}</span><select data-p="${path}" data-t="${o.vt||'text'}"${st}>${o.opts.map(([a,b])=>`<option value="${esc(a)}" ${String(v)===String(a)?'selected':''}>${esc(b)}</option>`).join('')}</select></label>`;
+  if(t==='color') return `<label class="fld${full}"><span class="l">${label}</span><input type="color" data-p="${path}" data-t="text"${st} value="${esc(v)}"></label>`;
+  if(t==='money'||t==='num'||t==='pct'){
+    const mn=o.min!=null?` min="${o.min}"`:'', mx=o.max!=null?` max="${o.max}"`:'';
+    return `<label class="fld${full}"><span class="l">${label}</span><input type="number" inputmode="numeric" step="${t==='money'?25:1}" data-p="${path}" data-t="${t}"${mn}${mx}${st} value="${esc(v)}">${t==='money'?`<small class="prev">dalam ribuan, = ${fmt(v)}</small>`:o.hint?`<small>${o.hint}</small>`:''}</label>`;
+  }
+  return `<label class="fld${full}"><span class="l">${label}</span><input type="text" data-p="${path}" data-t="text"${st} maxlength="${o.max||80}" value="${esc(v)}"></label>`;
+}
+const tileOpts=()=>CFG.tiles.map((t,i)=>[i,`${i}. ${t.name}`]);
+function tileHead(i){
+  const t=CFG.tiles[i]; const sw=t.t==='prop'?CFG.groups[t.g].color:'';
+  const meta=t.t==='elect'?TTYPES.elect:t.t==='corner'?'Kotak sudut':t.t==='prop'?`${TTYPES.prop}, ${fmt(t.price)}`:t.price?`${TTYPES[t.t]}, ${fmt(t.price)}`:t.t==='tax'?`${TTYPES.tax}, ${fmt(-t.amount)}`:TTYPES[t.t];
+  return `<span class="idx">${i}</span><span class="sw" style="${sw?'background:'+sw:''}"></span><span class="ttl">${t.t!=='prop'?esc(t.icon)+' ':''}${esc(t.name)}</span><span class="meta">${meta}</span>`;
+}
+function tileBody(i){
+  const t=CFG.tiles[i], P=`tiles.${i}`;
+  if(t.t==='corner') return `<p class="note-i">Kotak sudut punya fungsi tetap (${{go:'setoran dan tunjangan',jail:'rutan',bansos:'mencairkan dana hibah',gojail:'OTT, mengirim ke Rutan'}[t.k]}). Nilai uangnya diatur di Koleksi aturan.</p><div class="fgrid">${F('Nama',P+'.name','text',{max:40})}${F('Ikon (emoji)',P+'.icon','text',{max:8})}${F('Deskripsi',P+'.desc','textarea')}</div>`;
+  let h=`<div class="fgrid">${F('Jenis kotak',P+'.t','select',{opts:Object.entries(TTYPES),struct:1,vt:'ttype'})}${F('Nama lengkap',P+'.name','text',{max:60})}${F('Nama singkat di papan',P+'.short','text',{max:24})}`;
+  if(t.t!=='prop') h+=F('Ikon (emoji)',P+'.icon','text',{max:8});
+  if(t.t==='prop'){ h+=F('Kelompok warna',P+'.g','select',{opts:Object.entries(CFG.groups).map(([k,g])=>[k,g.name]),struct:1})+F('Harga beli',P+'.price','money',{min:0})+F('Biaya per ekspansi',P+'.build','money',{min:0})+
+    F('Sewa dasar',P+'.rent.0','money',{min:0})+F('Sewa ekspansi 1',P+'.rent.1','money',{min:0})+F('Sewa ekspansi 2',P+'.rent.2','money',{min:0})+F('Sewa ekspansi 3',P+'.rent.3','money',{min:0})+F('Deskripsi',P+'.flavor','textarea'); }
+  if(t.t==='trans') h+=F('Harga beli',P+'.price','money',{min:0})+F('Mahar dasar (dobel tiap partai tambahan milik pemilik)',P+'.rentBase','money',{min:0})+F('Deskripsi',P+'.flavor','textarea');
+  if(t.t==='util') h+=F('Harga beli',P+'.price','money',{min:0})+F('Sewa × angka dadu (punya 1)',P+'.mul1','money',{min:0})+F('Sewa × angka dadu (punya 2)',P+'.mul2','money',{min:0})+F('Deskripsi',P+'.flavor','textarea');
+  if(t.t==='tax') h+=F('Besar pungutan',P+'.amount','money',{min:0})+F('Deskripsi',P+'.flavor','textarea');
+  if(t.t==='takdir'||t.t==='musibah') h+=`<p class="note-i fld full">Pemain yang berhenti di sini mengambil satu ${TTYPES[t.t]} dari tumpukan.</p>`;
+  if(t.t==='elect') h+=F('Deskripsi',P+'.flavor','textarea')+`<p class="note-i fld full">Pemain yang berhenti di sini bisa nyalon ke jenjang jabatan berikutnya. Biaya dan target suara diatur di tab Jenjang jabatan.</p>`;
+  return h+'</div>';
+}
+function cardHead(kind,idx){ const c=CFG[kind][idx]; const e=effLabel(c,CFG.tiles);
+  return `<span class="idx">${idx+1}</span><span class="ttl ${c.enabled?'':'off'}">${c.enabled?'':'⏸ '}${esc(c.title)}</span><span class="meta">${esc(e.t)}</span>`; }
+function cardBody(kind,idx){
+  const c=CFG[kind][idx], P=`${kind}.${idx}`;
+  let h=`<div class="fgrid">${F('Judul',P+'.title','text',{max:80})}${F('Jenis efek',P+'.k','select',{opts:Object.entries(KINDS).map(([k,v])=>[k,v.label]),struct:1,vt:'kind'})}${F('Isi kartu',P+'.text','textarea',{max:500})}`;
+  for(const [f,label,t,mn,mx] of KINDS[c.k].fields){
+    if(t==='tile') h+=F(label,P+'.'+f,'select',{opts:tileOpts(),vt:'int'});
+    else if(t==='ttype') h+=F(label,P+'.'+f,'select',{opts:Object.entries(TTYPES)});
+    else h+=F(label,P+'.'+f,t,{min:mn,max:mx});
+  }
+  h+=F('Tambahan suara / elektabilitas (−10 sampai +10)',P+'.vote','num',{min:-10,max:10});
+  h+=F('Kartu aktif di tumpukan',P+'.enabled','bool',{full:1});
+  return h+`</div><div class="rowacts"><button data-act="dupcard" data-k="${kind}" data-i="${idx}">Duplikat</button><button class="danger" data-act="delcard" data-k="${kind}" data-i="${idx}">Hapus kartu</button></div>`;
+}
+function groupBody(){ return `<div class="fgrid">${Object.keys(CFG.groups).map(k=>F('Nama kelompok',`groups.${k}.name`,'text',{max:40})+F('Warna',`groups.${k}.color`,'color')+F('Bonus suara per aset',`groups.${k}.votes`,'num',{min:0,max:5})).join('')}</div>`; }
+function rowHTML(key,head,body){ const open=ST.open===key; return `<div class="srow ${open?'open':''}" data-row="${key}"><button class="shead" data-open="${key}" aria-expanded="${open}">${typeof head==='function'?head():head}</button>${open?`<div class="sbody">${body()}</div>`:''}</div>`; }
+function headFor(key){ const [a,b]=key.split(':'); if(a==='tile') return tileHead(+b); if(a==='takdir'||a==='musibah') return cardHead(a,+b); if(a==='groups') return groupHead(); if(a==='rank') return rankHead(+b); return ''; }
+function rankHead(i){ const r=CFG.ranks[i]; return `<span class="idx">${i}</span><span class="ttl">${esc(r.icon)} ${esc(r.name)}</span><span class="meta">${i===0?'Titik awal':`Mahar ${fmt(r.cost)}, target ${r.target}`}</span>`; }
+function rankBody(i){ const P=`ranks.${i}`; let h=`<div class="fgrid">${F('Nama jabatan',P+'.name','text',{max:40})}${F('Ikon (emoji)',P+'.icon','text',{max:8})}`;
+  if(i>0) h+=F('Mahar partai dan modal kampanye',P+'.cost','money',{min:0})+F('Biaya serangan fajar',P+'.fajar','money',{min:0})+F('Target suara (2–20)',P+'.target','num',{min:2,max:20});
+  h+=F('Tunjangan tiap lewat SETORAN',P+'.salary','money',{min:0})+F('Bonus sewa semua aset (%)',P+'.rentPct','pct',{min:0,max:300})+'</div>';
+  if(CFG.ranks.length>2&&i>0) h+=`<div class="rowacts"><button class="danger" data-act="delrank" data-i="${i}">Hapus jenjang ini</button></div>`;
+  return h; }
+function groupHead(){ return `<span class="idx">🎨</span><span class="ttl">Kelompok warna aset</span><span class="meta">${Object.values(CFG.groups).map(g=>`<span class="sw" style="display:inline-block;width:10px;height:10px;background:${g.color};margin-left:2px"></span>`).join('')}</span>`; }
+function drawStudioTab(sh){
+  const body=sh.querySelector('#stBody'); let h='';
+  sh.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===ST.tab));
+  const live=gameLive()?'<p class="note-i">Permainan sedang berjalan. Perubahan berlaku mulai permainan berikutnya.</p>':'';
+  if(ST.tab==='tiles'){
+    h=live+`<p class="intro">Papan berisi 36 kotak. Empat kotak sudut fungsinya tetap, sisanya bebas diganti jenis, nama, harga, dan sewanya. Semua nilai uang ditulis dalam ribuan rupiah (100000 = Rp 100 jt, 1000000 = Rp 1 M). Setiap kelompok warna bisa memberi bonus suara saat pemilu.</p>`;
+    h+=rowHTML('groups',groupHead,groupBody);
+    h+=CFG.tiles.map((t,i)=>rowHTML('tile:'+i,()=>tileHead(i),()=>tileBody(i))).join('');
+  } else if(ST.tab==='takdir'||ST.tab==='musibah'){
+    const kind=ST.tab, list=CFG[kind];
+    h=live+`<p class="intro">${list.filter(c=>c.enabled).length} dari ${list.length} kartu aktif. Kartu yang dinonaktifkan tetap tersimpan tapi tidak ikut dikocok. Nilai uang dalam ribuan rupiah, dan bisa dikalikan lewat aturan "Pengali nilai kartu".</p>
+      <div class="toolbar"><button class="primary" data-act="addcard" data-k="${kind}">+ Tambah ${TTYPES[kind]}</button><button data-act="allcards" data-k="${kind}" data-v="1">Aktifkan semua</button><button data-act="allcards" data-k="${kind}" data-v="0">Nonaktifkan semua</button></div>`;
+    h+=list.map((c,i)=>rowHTML(kind+':'+i,()=>cardHead(kind,i),()=>cardBody(kind,i))).join('')||'<p>Belum ada kartu. Tambahkan satu.</p>';
+  } else if(ST.tab==='ranks'){
+    h=live+`<p class="intro">Jenjang jabatan dari bawah ke atas. Jenjang 0 adalah titik awal semua pemain. Pemain naik satu jenjang setiap menang pemilu di kotak pemilu. Jenjang terakhir adalah kursi tertinggi.</p><div class="toolbar">${CFG.ranks.length<8?'<button class="primary" data-act="addrank">+ Tambah jenjang di puncak</button>':''}</div>`;
+    h+=CFG.ranks.map((r,i)=>rowHTML('rank:'+i,()=>rankHead(i),()=>rankBody(i))).join('');
+  } else if(ST.tab==='rules'){
+    if(!CFG.presets.some(p=>p.id===ST.preset)) ST.preset=CFG.activePreset;
+    const pi=CFG.presets.findIndex(p=>p.id===ST.preset), p=CFG.presets[pi];
+    h=live+`<p class="intro">Koleksi aturan adalah paket aturan yang bisa kamu pilih sebelum bermain. Ubah yang ada, gandakan untuk membuat variasi sendiri, atau buat dari nol.</p><div class="preset-grid"><div class="plist">
+      ${CFG.presets.map(x=>`<button data-act="selpreset" data-v="${esc(x.id)}" class="${x.id===ST.preset?'sel':''}">${esc(x.name)}${x.id===CFG.activePreset?'<span class="badge">dipakai</span>':''}<small>${esc(rulesSummary(x.rules))}</small></button>`).join('')}
+      <button data-act="newpreset" class="ghost">+ Koleksi aturan baru</button></div><div>
+      <div class="toolbar">${p.id!==CFG.activePreset?`<button class="primary" data-act="usepreset" data-v="${esc(p.id)}">Pakai untuk permainan berikutnya</button>`:'<span class="badge" style="font-size:.8rem;padding:4px 8px">Dipakai untuk permainan berikutnya</span>'}
+      <button data-act="duppreset" data-v="${esc(p.id)}">Gandakan</button>${p.builtin?`<button data-act="resetpreset" data-v="${esc(p.id)}">Pulihkan bawaan</button>`:''}${CFG.presets.length>1?`<button class="danger" data-act="delpreset" data-v="${esc(p.id)}">Hapus</button>`:''}</div>
+      <div class="fgrid">${F('Nama koleksi',`presets.${pi}.name`,'text',{max:60,struct:1})}${F('Deskripsi singkat',`presets.${pi}.desc`,'textarea',{max:300})}
+      ${RULE_FIELDS.map(f=>f.sec?`<div class="secttl">${f.sec}</div>`:f.t==='select'?F(f.label,`presets.${pi}.rules.${f.k}`,'select',{opts:f.opts}):F(f.label,`presets.${pi}.rules.${f.k}`,f.t,{min:f.min,max:f.max,full:f.t==='bool'})).join('')}</div></div></div>`;
+  } else if(ST.tab==='io'){
+    const assets=CFG.tiles.filter(isAsset).length;
+    h=`<p class="intro">${Store.mode==='akun'?'Semua perubahan otomatis tersimpan di akunmu, jadi tetap ada saat kamu membuka game ini lagi dari perangkat lain.':'Semua perubahan otomatis tersimpan di browser ini.'} Ekspor ke file JSON untuk cadangan atau berbagi edisi buatanmu dengan teman.</p>
+      <div class="stats"><div><b>${assets}</b>kotak aset</div><div><b>${CFG.takdir.filter(c=>c.enabled).length}/${CFG.takdir.length}</b>Kartu Takdir aktif</div><div><b>${CFG.musibah.filter(c=>c.enabled).length}/${CFG.musibah.length}</b>Kartu Musibah aktif</div><div><b>${CFG.ranks.length}</b>jenjang jabatan</div><div><b>${CFG.presets.length}</b>koleksi aturan</div></div>
+      <div class="toolbar"><button class="primary" data-act="export">⬇️ Ekspor edisi (JSON)</button><button data-act="showjson">Tampilkan JSON untuk disalin</button></div>
+      <div class="iobox"><h3>Impor edisi</h3><p class="intro">Pilih file JSON hasil ekspor, atau tempel isinya di kotak di bawah. Impor akan mengganti seluruh papan, kartu, jenjang jabatan, dan koleksi aturan. Gunakan file dari jilid 2.</p>
+      <div class="toolbar"><input type="file" id="ioFile" accept=".json,application/json"></div>
+      <textarea id="ioText" placeholder="Tempel JSON di sini">${esc(ST.io)}</textarea>
+      <p class="err" id="ioErr"></p><div class="toolbar"><button data-act="import">Terapkan impor</button></div></div>
+      <h3>Kembalikan ke bawaan</h3><p class="intro">Menghapus semua perubahan papan, kartu, dan koleksi aturan.</p><button class="danger" data-act="resetall">Kembalikan semua ke bawaan</button>`;
+  }
+  body.innerHTML=h;
+  if(ST.tab==='io'){ const fi=sh.querySelector('#ioFile'); if(fi) fi.onchange=async()=>{ const f=fi.files[0]; if(!f) return; try{ ST.io=await f.text(); sh.querySelector('#ioText').value=ST.io; }catch(e){ sh.querySelector('#ioErr').textContent='File tidak bisa dibaca.'; } }; }
+}
+let studioOnClose=null;
+function openStudio(tab,onClose){
+  ST.tab=tab||ST.tab; ST.open=null; ST.preset=CFG.activePreset; studioOnClose=onClose||null;
+  const ov=overlay(`<div class="sheet studio"><div class="studio-top"><h2>🛠️ Studio kustomisasi</h2><span class="savestat" id="stSave">${esc(Store.status)}</span><button class="primary" id="stClose">Selesai</button></div>
+    <div class="tabs" role="tablist"><button data-tab="tiles">Kotak papan</button><button data-tab="takdir">Kartu Takdir</button><button data-tab="musibah">Kartu Musibah</button><button data-tab="ranks">Jenjang jabatan</button><button data-tab="rules">Koleksi aturan</button><button data-tab="io">Simpan dan bagikan</button></div>
+    <div id="stBody"></div></div>`);
+  const sh=ov.firstChild;
+  const statusFn=s=>{ const e=sh.querySelector('#stSave'); if(e) e.textContent=s; }; Store.listeners.push(statusFn);
+  let dirty=false;
+  const changed=()=>{ dirty=true; Store.schedule(); };
+  const close=()=>{ Store.listeners=Store.listeners.filter(f=>f!==statusFn); ov.remove();
+    if(dirty&&!gameLive()){ S=null; useIdleConfig(); buildBoard(); render(); }
+    if(studioOnClose) studioOnClose(); };
+  sh.querySelector('#stClose').onclick=close;
+  const redraw=()=>{ const y=sh.scrollTop; drawStudioTab(sh); sh.scrollTop=y; };
+  const onField=e=>{
+    const el=e.target; if(!el.dataset||!el.dataset.p) return;
+    const t=el.dataset.t, path=el.dataset.p; let v;
+    if((t==='ttype'||t==='kind')&&e.type!=='change') return;
+    if(t==='bool') v=el.checked;
+    else if(t==='money'||t==='num'||t==='pct'||t==='int'){ if(el.value===''||isNaN(+el.value)) return; v=Math.round(+el.value); if(el.min!=='' && el.min!=null) v=Math.max(+el.min,v); if(el.max!=='' && el.max!=null) v=Math.min(+el.max,v); if(e.type==='change') el.value=v; }
+    else if(t==='ttype'){ const i=+path.split('.')[1]; const old=CFG.tiles[i]; const nt=el.value; const base={t:nt,name:old.name,short:old.short,icon:old.icon,...clone(TDEF[nt])};
+      if(nt==='takdir'||nt==='musibah'){ base.name=TTYPES[nt]; base.short=nt==='takdir'?'Takdir':'Musibah'; base.icon=TDEF[nt].icon; }
+      else if(old.t==='takdir'||old.t==='musibah'){ base.name=TTYPES[nt]+' baru'; base.short=TTYPES[nt]; }
+      if(old.flavor) base.flavor=old.flavor; if(nt==='prop') delete base.icon; else if(!old.icon||old.t==='takdir'||old.t==='musibah') base.icon=TDEF[nt].icon;
+      CFG.tiles[i]=fillTile(base,base); changed(); redraw(); return; }
+    else if(t==='kind'){ const [k,i]=path.split('.'); const c=CFG[k][+i]; c.k=el.value; changed(); redraw(); return; }
+    else v=el.value;
+    setPath(CFG,path,v);
+    const cm=path.match(/^tiles\.(\d+)\.name$/); if(cm&&CFG.tiles[+cm[1]].t==='corner') CFG.tiles[+cm[1]].short=v;
+    changed();
+    if(t==='money'){ const sm=el.parentElement.querySelector('small.prev'); if(sm) sm.textContent='dalam ribuan, = '+fmt(v); }
+    if(el.dataset.struct&&e.type==='change'){ redraw(); return; }
+    const row=el.closest('.srow'); if(row){ const hd=row.querySelector('.shead'); if(hd) hd.innerHTML=headFor(row.dataset.row); }
+  };
+  sh.addEventListener('input',onField); sh.addEventListener('change',onField);
+  sh.addEventListener('click',async e=>{
+    const tb=e.target.closest('[data-tab]'); if(tb){ ST.tab=tb.dataset.tab; ST.open=null; drawStudioTab(sh); return; }
+    const op=e.target.closest('[data-open]'); if(op){ const k=op.dataset.open; ST.open=ST.open===k?null:k; redraw(); return; }
+    const b=e.target.closest('[data-act]'); if(!b) return;
+    const act=b.dataset.act, kind=b.dataset.k, idx=+b.dataset.i, v=b.dataset.v;
+    if(act==='addcard'){ CFG[kind].push({id:uid(),title:kind==='takdir'?'Takdir baru':'Musibah baru',text:'',k:'money',v:kind==='takdir'?1000:-1000,lv:0,pp:0,to:0,n:3,type:'trans',enabled:true}); ST.open=kind+':'+(CFG[kind].length-1); changed(); redraw();
+      const r=sh.querySelector(`[data-row="${ST.open}"]`); if(r&&r.scrollIntoView) r.scrollIntoView({block:"center"}); }
+    else if(act==='dupcard'){ const c=clone(CFG[kind][idx]); c.id=uid(); c.title+=' (salinan)'; CFG[kind].splice(idx+1,0,c); ST.open=kind+':'+(idx+1); changed(); redraw(); }
+    else if(act==='delcard'){ if(!b.dataset.sure){ b.dataset.sure='1'; b.textContent='Yakin hapus? Klik lagi'; return; } CFG[kind].splice(idx,1); ST.open=null; changed(); redraw(); }
+    else if(act==='allcards'){ CFG[kind].forEach(c=>c.enabled=v==='1'); changed(); redraw(); }
+    else if(act==='selpreset'){ ST.preset=v; redraw(); }
+    else if(act==='usepreset'){ CFG.activePreset=v; changed(); redraw(); }
+    else if(act==='newpreset'){ const p={id:uid(),name:'Aturan buatanku',desc:'',builtin:false,rules:{...BASE_RULES}}; CFG.presets.push(p); ST.preset=p.id; changed(); redraw(); }
+    else if(act==='duppreset'){ const src=CFG.presets.find(p=>p.id===v); const p={...clone(src),id:uid(),name:src.name+' (salinan)',builtin:false}; CFG.presets.push(p); ST.preset=p.id; changed(); redraw(); }
+    else if(act==='resetpreset'){ const d=DEFAULT_PRESETS.find(p=>p.id===v); const p=CFG.presets.find(p=>p.id===v); if(d&&p){ p.name=d.name; p.desc=d.desc; p.rules={...BASE_RULES,...d.r}; changed(); redraw(); toast('Koleksi aturan dipulihkan'); } }
+    else if(act==='delpreset'){ if(!b.dataset.sure){ b.dataset.sure='1'; b.textContent='Yakin hapus? Klik lagi'; return; } CFG.presets=CFG.presets.filter(p=>p.id!==v); if(CFG.activePreset===v) CFG.activePreset=CFG.presets[0].id; ST.preset=CFG.activePreset; changed(); redraw(); }
+    else if(act==='export'){ const json=JSON.stringify(CFG,null,2); let ok=false;
+      try{ const dl=window.claude&&window.claude.use?await claude.use('downloads'):null; if(dl){ await dl.save({filename:'republik62-jilid2-edisi.json',data:json}); ok=true; toast('Edisi diekspor','good'); } }catch(err){ if(err&&err.code==='declined') ok=true; }
+      if(!ok&&!(window.claude&&window.claude.use)){ try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([json],{type:'application/json'})); a.download='republik62-jilid2-edisi.json'; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000); ok=true; toast('Edisi diekspor','good'); }catch(err){} }
+      if(!ok){ ST.io=json; redraw(); toast('Salin JSON dari kotak impor di bawah'); } }
+    else if(act==='showjson'){ ST.io=JSON.stringify(CFG,null,2); redraw(); const ta=sh.querySelector('#ioText'); if(ta){ ta.focus(); ta.select(); } }
+    else if(act==='import'){ const txt=sh.querySelector('#ioText').value; let data;
+      try{ data=JSON.parse(txt); }catch(err){ sh.querySelector('#ioErr').textContent='Isi bukan JSON yang valid. Pastikan disalin utuh dari hasil ekspor.'; return; }
+      if(!data||!Array.isArray(data.tiles)||data.tiles.length!==BOARD_N){ sh.querySelector('#ioErr').textContent='Data tidak dikenali: papan harus berisi tepat 36 kotak.'; return; }
+      CFG=normalize(data); ST.io=''; changed(); redraw(); toast('Edisi berhasil diimpor','good'); }
+    else if(act==='addrank'){ const last=CFG.ranks[CFG.ranks.length-1]; CFG.ranks.push({name:'Jabatan baru',icon:'⭐',cost:Math.round(last.cost*1.4/5000)*5000||100000,fajar:Math.round(last.fajar*1.4/5000)*5000||50000,target:Math.min(20,(last.target||8)+1),salary:Math.round(last.salary*1.4/5000)*5000,rentPct:Math.min(300,last.rentPct+15)}); ST.open='rank:'+(CFG.ranks.length-1); changed(); redraw(); }
+    else if(act==='delrank'){ if(!b.dataset.sure){ b.dataset.sure='1'; b.textContent='Yakin hapus? Klik lagi'; return; } CFG.ranks.splice(idx,1); ST.open=null; changed(); redraw(); }
+    else if(act==='resetall'){ if(!b.dataset.sure){ b.dataset.sure='1'; b.textContent='Yakin? Semua perubahan hilang. Klik lagi'; return; } CFG=defaultConfig(); changed(); redraw(); toast('Semua dikembalikan ke bawaan'); }
+  });
+  drawStudioTab(sh);
+}
+
+/* ================= LAYAR MULAI ================= */
+let setupRedraw=null;
+function showSetup(){
+  document.querySelectorAll('.overlay').forEach(o=>o.remove());
+  const ov=overlay('<div class="sheet setup"></div>'); const sh=ov.firstChild;
+  const used=(ci,i)=>setup.slots.some((s,j)=>j!==i&&s.type!=='off'&&s.char===ci);
+  const draw=()=>{
+    const ap=activePreset();
+    sh.innerHTML=`<div class="hero"><div class="stampbig">+62<small>Jilid 2</small></div><div><h2>Dari OKB jadi pejabat</h2><p class="lead">Tanah warisan kena ganti untung jalan tol, usaha keluarga mendadak maju. Kini saatnya "mengabdi": beli partai, sewa buzzer, siapkan amplop, dan rintis karier dari kursi DPRD sampai Menteri. Main sendiri melawan bot, atau bergantian dengan teman di satu perangkat.</p></div></div>
+    <h3>Pemain</h3>
+    <div class="slots">${setup.slots.map((s,i)=>`<div class="slot ${s.type}" style="--pc:${PCOLORS[i]}">
+      <div class="seg">${[['human','👤 Manusia'],['bot','🤖 Bot'],['off','Kosong']].map(([v,l])=>`<button data-act="type" data-i="${i}" data-v="${v}" class="${s.type===v?'on':''}">${l}</button>`).join('')}</div>
+      ${s.type!=='off'?`<input data-i="${i}" value="${esc(s.name)}" maxlength="16" aria-label="Nama pemain ${i+1}">
+      <div class="chars">${CHARS.map((c,ci)=>`<button data-act="char" data-i="${i}" data-v="${ci}" class="${s.char===ci?'on':''}" ${used(ci,i)?'disabled':''} title="${c[1]}" aria-label="${c[1]}">${c[0]}</button>`).join('')}</div>
+      <div class="charname">${CHARS[s.char][0]} ${CHARS[s.char][1]}</div>`:''}</div>`).join('')}</div>
+    <h3>Koleksi aturan</h3>
+    <div class="presets">${CFG.presets.map(p=>`<button data-act="preset" data-v="${esc(p.id)}" class="${p.id===ap.id?'on':''}"><b>${esc(p.name)}</b><small>${esc(p.desc||rulesSummary(p.rules))}</small></button>`).join('')}</div>
+    <p class="rsum">Aturan terpilih: ${esc(rulesSummary(ap.rules))}.</p>
+    <p class="err" id="setupErr"></p>
+    <div class="actions"><button class="ghost" data-act="studio">🛠️ Ubah papan, kartu, dan aturan</button><button class="ghost" data-act="rules">Aturan main</button><button class="primary" data-act="start">Mulai main 🎲</button></div>`;
+  };
+  setupRedraw=()=>{ if(document.body.contains(ov)) draw(); };
+  sh.oninput=e=>{ if(e.target.matches('input[data-i]')) setup.slots[+e.target.dataset.i].name=e.target.value; };
+  sh.onclick=e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    const act=b.dataset.act, i=+b.dataset.i;
+    if(act==='type'){ const s=setup.slots[i], v=b.dataset.v;
+      if(v==='bot'&&/^Pemain \d$/.test(s.name)) s.name=BOT_NAMES[i];
+      if(v==='human'&&BOT_NAMES.includes(s.name)) s.name=`Pemain ${i+1}`;
+      s.type=v; if(v!=='off'&&used(s.char,i)) s.char=CHARS.findIndex((_,ci)=>!used(ci,i)); draw(); }
+    else if(act==='char'){ setup.slots[i].char=+b.dataset.v; draw(); }
+    else if(act==='preset'){ CFG.activePreset=b.dataset.v; Store.schedule(); if(!gameLive()){ R={...activePreset().rules}; buildBoard(); render(); } draw(); }
+    else if(act==='studio') openStudio('rules',draw);
+    else if(act==='rules') showRules();
+    else if(act==='start'){
+      const a=setup.slots.filter(s=>s.type!=='off'), err=sh.querySelector('#setupErr');
+      if(a.length<2){ err.textContent='Butuh minimal 2 peserta. Isi kursi kosong dengan bot.'; return; }
+      if(!a.some(s=>s.type==='human')){ err.textContent='Butuh minimal 1 pemain manusia.'; return; }
+      ov.remove(); setupRedraw=null; newGame(); }
+  };
+  draw();
+}
+function newGame(){
+  const preset=activePreset();
+  R=clone(preset.rules); TILES=clone(CFG.tiles); GROUPS=clone(CFG.groups);
+  const cards={takdir:CFG.takdir.filter(c=>c.enabled).map(clone),musibah:CFG.musibah.filter(c=>c.enabled).map(clone)};
+  const players=[];
+  setup.slots.forEach((s,i)=>{ if(s.type==='off') return;
+    players.push({id:players.length,name:(s.name||'').trim()||`Pemain ${i+1}`,char:CHARS[s.char][0],charName:CHARS[s.char][1],color:PCOLORS[i],isBot:s.type==='bot',cash:R.startCash,pos:0,jail:false,jailTurns:0,ordal:0,bankrupt:false,doubles:0,rank:0,votes:0}); });
+  RANKS=clone(CFG.ranks);
+  S={players,cur:0,phase:'roll',pot:R.bansosStart,round:1,own:TILES.map(()=>({owner:null,level:0})),ruleName:preset.name,
+     cards,decks:{takdir:shuffle(cards.takdir.slice()),musibah:shuffle(cards.musibah.slice())},busy:false,lastSum:7,log:[],over:false,notesOpen:new Set(),hint:'',botTimer:null};
+  buildBoard();
+  log(`🇮🇩 Selamat datang di Republik +62 jilid 2. Koleksi aturan: <b>${esc(preset.name)}</b>. Kalian semua baru dapat ganti untung jalan tol. Saatnya mengabdi pada bangsa (dan keluarga).`);
+  if(R.startAssets>0){
+    const pool=shuffle(TILES.map((t,i)=>isAsset(t)?i:-1).filter(i=>i>=0));
+    for(let k=0;k<R.startAssets;k++) for(const p of players){ const i=pool.pop(); if(i==null) break; S.own[i].owner=p.id; log(`🎁 ${pn(p)} mewarisi ${esc(TILES[i].name)} dari keluarga besar.`); }
+  }
+  log(`— Giliran ${pn(players[0])} —`,true);
+  $('#sum').textContent='';
+  render(); toast(`Giliran ${players[0].char} ${esc(players[0].name)}`); maybeBot();
+}
+
+/* ================= ALUR GILIRAN ================= */
+async function onRoll(){
+  if(!S||S.busy||S.phase!=='roll'||S.over) return;
+  const p=cur(); S.busy=true; S.hint=''; renderControls();
+  const d1=rnd6(), d2=rnd6(), sum=d1+d2, dbl=d1===d2;
+  await rollDice(d1,d2); S.lastSum=sum;
+  log(`🎲 ${pn(p)} mengocok ${d1} + ${d2} = <b>${sum}</b>${dbl?' (kembar!)':''}`);
+  let again=false;
+  if(p.jail){
+    if(dbl){ p.jail=false; p.jailTurns=0; log(`🔓 Kembar! ${pn(p)} keluar dari Rutan.`); toast('🔓 Bebas dengan dadu kembar','good'); await moveForward(p,sum); await resolveTile(p); }
+    else { p.jailTurns++;
+      if(p.jailTurns>=R.jailMaxTurns){ log(`${pn(p)} sudah ${p.jailTurns} giliran di Rutan, wajib bayar uang jaminan.`); charge(p,R.jailFine,fineDest());
+        if(!p.bankrupt){ p.jail=false; p.jailTurns=0; await moveForward(p,sum); await resolveTile(p); } }
+      else { log(`🔒 ${pn(p)} masih ditahan (${p.jailTurns}/${R.jailMaxTurns}).`); S.hint='Belum kembar. Masih ditahan, tapi sel VIP.'; } }
+  } else {
+    if(dbl&&R.doublesAgain){ p.doubles++; if(R.tripleJail&&p.doubles>=3){ log(`🚨 Kembar tiga kali? Mencurigakan. ${pn(p)} diamankan.`); goJail(p); } else again=true; }
+    if(!p.jail){ await moveForward(p,sum); await resolveTile(p); }
+  }
+  S.busy=false;
+  if(S.over){ render(); return; }
+  if(checkTarget()) return;
+  if(p.bankrupt){ render(); await sleep(700); nextTurn(); return; }
+  S.phase=(again&&!p.jail&&!p.bankrupt)?'roll':'end';
+  if(S.phase==='roll') S.hint='Dadu kembar! Kocok sekali lagi.';
+  render(); maybeBot();
+}
+function endTurn(){ if(!S||S.busy||S.phase!=='end'||S.over) return; nextTurn(); }
+async function nextTurn(){
+  if(S.over) return;
+  const n=S.players.length, prev=S.cur; let i=prev;
+  for(let k=0;k<n;k++){ i=(i+1)%n; if(!S.players[i].bankrupt) break; }
+  if(i<=prev){ S.round++;
+    if(R.roundLimit&&S.round>R.roundLimit){ endGame('limit'); return; }
+    if(R.inflationEvery&&(S.round-1)%R.inflationEvery===0) inflate();
+    if(R.electionEvery&&(S.round-1)%R.electionEvery===0){ await electionSeason(); if(S.over) return; } }
+  S.cur=i; const p=cur(); p.doubles=0; S.phase='roll'; S.hint='';
+  log(`— Giliran ${pn(p)} —`,true); toast(`Giliran ${p.char} ${esc(p.name)}`);
+  render(); if(checkTarget()) return; maybeBot();
+}
+function maybeBot(){ if(!S) return; clearTimeout(S.botTimer); if(S.over||S.busy) return; if(!cur().isBot) return; S.botTimer=setTimeout(botStep,750); }
+function botStep(){
+  if(!S||S.over||S.busy) return; const p=cur(); if(!p.isBot) return;
+  if(S.phase==='roll'){ if(p.jail){ if(p.ordal>0) useOrdal(p); else if(p.cash>=R.startCash*0.28) payJail(p); } onRoll(); }
+  else if(S.phase==='end'){ botBuild(p); render(); S.botTimer=setTimeout(()=>{ if(S&&!S.over&&cur()===p&&S.phase==='end') endTurn(); },600); }
+}
+function botBuild(p){
+  for(let k=0;k<12;k++){
+    const c=S.own.map((o,i)=>({o,i,t:TILES[i]})).filter(x=>canRenov(p.id,x.i)&&p.cash-x.t.build>=R.startCash*0.2).sort((a,b)=>a.o.level-b.o.level||b.t.price-a.t.price)[0];
+    if(!c) break; p.cash-=c.t.build; c.o.level++; log(`🔨 ${pn(p)} mengekspansi ${esc(c.t.name)} ke tingkat ${c.o.level}.`); toast(`🔨 ${esc(p.name)} mengekspansi ${esc(c.t.name)}`);
+  }
+}
+function endGame(reason){
+  S.over=true; S.phase='over'; clearTimeout(S.botTimer);
+  const byRank=reason!=='target'&&R.rankWin;
+  const alive=S.players.filter(p=>!p.bankrupt).sort((a,b)=>byRank&&b.rank!==a.rank?b.rank-a.rank:netWorth(b)-netWorth(a));
+  const ranking=[...alive,...S.players.filter(p=>p.bankrupt)];
+  log(`🏁 Permainan selesai. ${pn(ranking[0])} keluar sebagai pemenang, menjabat ${esc(rankOf(ranking[0]).name)}.`,true); render();
+  const why={rank:`${esc(ranking[0].name)} resmi dilantik sebagai ${esc(rankOf(ranking[0]).name)}. Dari tukang tanah jadi penentu kebijakan negara.`,limit:`Batas putaran tercapai. Pemenang ditentukan dari ${R.rankWin?'jabatan tertinggi, lalu ':''}kekayaan bersih.`,target:`Kekayaan bersih menembus target ${fmt(R.targetWealth)}. Jabatan hanyalah formalitas.`,last:'Semua pesaing sudah bangkrut atau ditahan. Demokrasi tinggal satu calon.'}[reason];
+  const ov=overlay(`<div class="sheet" style="max-width:460px"><div style="font-size:3rem;text-align:center">🏆</div>
+    <h2 style="text-align:center">${ranking[0].char} ${esc(ranking[0].name)} menang!</h2><p style="text-align:center" class="psub">${why}</p>
+    <div class="rank">${ranking.map((p,k)=>`<div style="border-left:6px solid ${p.color}"><span class="pos">${k+1}</span><span style="font-size:1.5rem">${p.char}</span><span style="flex:1"><b>${esc(p.name)}</b><br><span class="ttl">${p.bankrupt?'Bangkrut, kini jadi saksi':rankOf(p).icon+' '+esc(rankOf(p).name)}</span></span><b>${p.bankrupt?'Bangkrut':fmt(netWorth(p))}</b></div>`).join('')}</div>
+    <div class="actions"><button id="eView">Lihat papan</button><button class="primary" id="eAgain">Main lagi</button></div></div>`);
+  ov.querySelector('#eView').onclick=()=>ov.remove();
+  ov.querySelector('#eAgain').onclick=()=>{ ov.remove(); showSetup(); };
+}
+
+/* ================= MULAI ================= */
+const HEADLINES=['Kekayaan pejabat naik 300% selama menjabat, katanya dari ternak lele','RUU kilat disahkan sebelum naskahnya selesai dicetak','Baliho calon muncul lebih dulu daripada jalan yang dijanjikan','Survei elektabilitas dirilis, pemesan survei unggul telak','Politikus pindah partai ketiga kalinya, mengaku tetap setia pada rakyat','Rapat paripurna dihadiri 40 orang, daftar hadirnya 300 tanda tangan','Kunjungan kerja ke luar negeri membahas cara menghemat anggaran','Tersangka korupsi melambaikan tangan dan tersenyum ke kamera','Mobil dinas baru dibeli demi efisiensi','Anggota dewan tertidur saat rapat membahas produktivitas']
+$('#ticker').textContent=shuffle([...HEADLINES]).join('   •   ');
+buildBoard(); buildDice(); render();
+$('#btnRules').onclick=showRules; $('#btnNew').onclick=confirmNew; $('#btnStudio').onclick=()=>openStudio('tiles'); $('#btnLadder').onclick=showLadder;
+showSetup();
+Store.init();
+
+
+</script>
+</body>
+</html>
