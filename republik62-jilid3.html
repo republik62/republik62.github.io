@@ -577,7 +577,7 @@ const BASE_RULES={startCash:1000000,salary:135000,landGoBonus:0,sellPct:50,cardM
   doublesAgain:true,tripleJail:true,jailFine:35000,jailMaxTurns:3,
   finesToPot:true,bansosStart:0,bansosCutPct:30,
   rankWin:true,electionEvery:3,fajarBonus:3,votesReset:true,ottDemote:true,
-  teamVote:true,speechMax:3,challengeSecs:30,defense:true,
+  teamVote:true,speechMax:3,challengeSecs:30,defense:true,judgeCount:5,judgeNeed:3,
   setoranQuiz:true,questionSecs:30,genPct:35,quizReward:40000,box1:3,box2:2,box3:1,box4:0,
   inflationEvery:0,inflationPct:10,salaryFollowsInflation:false,roundLimit:0,targetWealth:0};
 const RULE_FIELDS=[
@@ -599,8 +599,10 @@ const RULE_FIELDS=[
  {sec:'Permainan tim'},
  {k:'teamVote',label:'Musyawarah tim wajib sebelum nyalon',t:'bool'},
  {k:'speechMax',label:'Suara maksimal dari menjawab pertanyaan warga saat kampanye (0 = tanpa sesi tanya jawab)',t:'num',min:0,max:6},
- {k:'challengeSecs',label:'Waktu menjawab pertanyaan warga dan pembelaan (detik)',t:'num',min:10,max:120},
- {k:'defense',label:'Pengacara boleh melakukan pembelaan untuk keluar dari Rutan',t:'bool'},
+ {k:'challengeSecs',label:'Waktu menjawab pertanyaan warga dan membela di sidang (detik)',t:'num',min:10,max:120},
+ {k:'defense',label:'Anggota yang diundi boleh mengajukan pembelaan untuk keluar dari Rutan',t:'bool'},
+ {k:'judgeCount',label:'Jumlah hakim di majelis pembelaan (3–9)',t:'num',min:3,max:9},
+ {k:'judgeNeed',label:'Suara hakim minimal agar pembelaan diterima dan koalisi bebas',t:'num',min:1,max:9},
  {sec:'Karier politik'},
  {k:'rankWin',label:'Menang otomatis saat mencapai jenjang jabatan tertinggi',t:'bool'},
  {k:'electionEvery',label:'Pemilu serentak setiap … putaran, semua pemain boleh nyalon (0 = mati)',t:'num',min:0,max:20},
@@ -1167,7 +1169,7 @@ function showRules(){
    <p><b>Naik jabatan:</b> berhenti di kotak pemilu (🗳️ Pilkada, Pemilu, atau Bursa Kabinet) untuk nyalon ke jenjang berikutnya. Bayar mahar dan modal kampanye, lalu lempar dua dadu. Suaramu = angka dadu + elektabilitas + basis aset (setiap aset Media dan Basis massa menambah suara)${r.fajarBonus?` + ${r.fajarBonus} jika memakai serangan fajar`:''}. Kalau mencapai target, kamu terpilih.${r.votesReset?' Elektabilitas habis terpakai setelah pemilu, menang atau kalah.':''}</p>
    <p><b>Keuntungan jabatan:</b> tunjangan saat lewat SETORAN dan bonus sewa untuk semua asetmu, karena izin dan proyek "lebih lancar".</p>
    <p>Kartu Takdir dan Musibah bisa mengubah uang, elektabilitas, bahkan jabatanmu. ${r.finesToPot?`Pungutan dan denda masuk ke dana hibah, yang bisa dicairkan di kotak Dana Hibah (dipotong ${r.bansosCutPct}%).`:''} ${r.ottDemote?'Kena OTT berarti masuk Rutan dan jabatan turun satu jenjang.':'Kena OTT hanya membuatmu masuk Rutan.'} Keluar dari Rutan dengan dadu kembar, uang jaminan ${fmt(r.jailFine)}, atau Kartu Ordal.</p>
-   <p><b>Mode koalisi:</b> setiap koalisi berisi beberapa anggota dan dua peran berputar setiap giliran: 🎲 pelempar dadu dan 💰 bendahara yang memutuskan pembelian. Setiap kali ada yang harus maju ke depan, aplikasi <b>mengundi satu nama</b> dari daftar anggota, dan semua anggota pasti kebagian sebelum ada yang terpanggil dua kali. Yang diundi bisa menjadi calon yang menjawab pertanyaan warga saat kampanye dengan gaya unik${r.speechMax?` (hasilnya dari satu dari empat kotak tertutup, maksimal +${r.speechMax} suara, bukan dari penilaian lawan)`:''}, pengacara pembelaan di Rutan${r.defense?'':' (dimatikan di aturan ini)'}, atau penjawab pertanyaan. ${r.setoranQuiz?`<b>Setiap lewat atau tiba di SETORAN</b>, anggota yang diundi harus menjawab pertanyaan acak${r.questionSecs?` dalam ${r.questionSecs} detik`:''}. Benar berarti setoran cair, salah berarti setoran ditahan. `:''}${r.teamVote?'Pencalonan wajib lewat musyawarah tim. ':''}Di kotak 📝 Uji Publik dan 🎤 Panggung Rakyat, kalau anggota berhasil, koalisi memilih satu dari empat kotak suara tertutup (isinya ${[r.box1,r.box2,r.box3,r.box4].map(v=>(v>0?'+':'')+v).join(', ')} suara). Setiap keterlibatan memberi poin partisipasi, dan di akhir permainan dipilih kader teladan.</p>
+   <p><b>Mode koalisi:</b> setiap koalisi berisi beberapa anggota dan dua peran berputar setiap giliran: 🎲 pelempar dadu dan 💰 bendahara yang memutuskan pembelian. Setiap kali ada yang harus maju ke depan, aplikasi <b>mengundi satu nama</b> dari daftar anggota, dan semua anggota pasti kebagian sebelum ada yang terpanggil dua kali. Yang diundi bisa menjadi calon yang menjawab pertanyaan warga saat kampanye dengan gaya unik${r.speechMax?` (hasilnya dari satu dari empat kotak tertutup, maksimal +${r.speechMax} suara, bukan dari penilaian lawan)`:''}, pengacara pembelaan di Rutan${r.defense?` (putusannya dari satu dari empat kotak berisi jumlah suara ${r.judgeCount} hakim, bebas jika minimal ${Math.min(r.judgeNeed,r.judgeCount)} setuju)`:' (dimatikan di aturan ini)'}, atau penjawab pertanyaan. ${r.setoranQuiz?`<b>Setiap lewat atau tiba di SETORAN</b>, anggota yang diundi harus menjawab pertanyaan acak${r.questionSecs?` dalam ${r.questionSecs} detik`:''}. Benar berarti setoran cair, salah berarti setoran ditahan. `:''}${r.teamVote?'Pencalonan wajib lewat musyawarah tim. ':''}Di kotak 📝 Uji Publik dan 🎤 Panggung Rakyat, kalau anggota berhasil, koalisi memilih satu dari empat kotak suara tertutup (isinya ${[r.box1,r.box2,r.box3,r.box4].map(v=>(v>0?'+':'')+v).join(', ')} suara). Setiap keterlibatan memberi poin partisipasi, dan di akhir permainan dipilih kader teladan.</p>
    <p class="psub">Koleksi aturan aktif: ${esc(S?S.ruleName:activePreset().name)}. Semua bisa diubah di Studio. Semua tokoh, partai, lembaga, dan kejadian di game ini fiktif dan satir. Kalau terasa mirip kenyataan, itu salah kenyataannya.</p>
    <div class="actions"><button class="primary" id="rClose">Mengerti</button></div></div>`);
   ov.querySelector('#rClose').onclick=()=>ov.remove(); ov.onclick=e=>{ if(e.target===ov) ov.remove(); };
@@ -1316,8 +1318,9 @@ function pickBox(p,o={}){
       <div class="actions" style="justify-content:center"><button class="primary" id="bOk" style="visibility:hidden">Lanjut</button></div></div>`);
     let chosen=null;
     ov.querySelector('.boxes').onclick=e=>{ const b=e.target.closest('.vbox'); if(!b||chosen!==null) return; chosen=+b.dataset.k;
-      ov.querySelectorAll('.vbox').forEach((x,k)=>{ const v=vals[k]; x.querySelector('.vb-back').innerHTML=`<b>${v>0?'+':''}${v}</b><small>${esc(lab(v))}</small>`; x.classList.add('open'); if(k===chosen) x.classList.add('chosen'); x.disabled=true; });
-      const v=vals[chosen]; ov.querySelector('.qmsg').textContent=`Kotak ${chosen+1}: ${v>0?'+':''}${v} suara. ${lab(v)}`;
+      const fv=o.fmt||(v=>(v>0?'+':'')+v), fm=o.msg||(v=>`${fv(v)} suara. ${lab(v)}`);
+      ov.querySelectorAll('.vbox').forEach((x,k)=>{ const v=vals[k]; x.querySelector('.vb-back').innerHTML=`<b>${esc(fv(v))}</b><small>${esc(lab(v))}</small>`; x.classList.add('open'); if(k===chosen) x.classList.add('chosen'); x.disabled=true; });
+      const v=vals[chosen]; ov.querySelector('.qmsg').textContent=`Kotak ${chosen+1}: ${fm(v)}`;
       const ok=ov.querySelector('#bOk'); ok.style.visibility='visible'; ok.focus(); };
     ov.querySelector('#bOk').onclick=()=>{ ov.remove(); res(vals[chosen]); };
   });
@@ -1352,11 +1355,14 @@ async function defend(p){
   if(!S||S.busy||!p.jail||p.defUsed||!R.defense) return;
   S.busy=true; p.defUsed=true; renderControls();
   const pg=await pickMember(p,'Siapa yang menjadi pengacara? Aplikasi mengundi satu nama.');
-  await stage(p,pg,'Pembelaan di persidangan',`${pg.name}, yakinkan majelis hakim (tim lain) bahwa kardus yang disita memang hanya berisi buah.`,R.challengeSecs);
-  const j=await judge(p,`Apakah pembelaan ${pg.name} meyakinkan?`);
-  const ok=j.ups*2>j.total; award(pg,ok?4:1);
-  if(ok){ p.jail=false; p.jailTurns=0; log(`⚖️ Pembelaan ${mn(pg,p)} diterima (${j.ups}/${j.total}). ${pn(p)} bebas tanpa uang jaminan.`); toast('⚖️ Pembelaan diterima, bebas!','good'); }
-  else { log(`⚖️ Pembelaan ${mn(pg,p)} ditolak (${j.ups}/${j.total}). Majelis tidak percaya soal kardus buah.`); toast('⚖️ Pembelaan ditolak','bad'); }
+  const n=Math.max(3,R.judgeCount), need=Math.min(Math.max(1,R.judgeNeed),n);
+  await stage(p,pg,'Pembelaan di persidangan',`${pg.name}, yakinkan majelis hakim bahwa kardus yang disita memang hanya berisi buah. Bebas jika minimal ${need} dari ${n} hakim setuju.`,R.challengeSecs,'Selesai membela, buka kotak putusan');
+  const vals=shuffle([ri(need,n),ri(need,n),ri(0,need-1),ri(0,need-1)]);
+  const lab=v=>v>=need?'Pembelaan diterima, bebas!':'Pembelaan ditolak, tetap ditahan.';
+  const v=p.isBot?pick(vals):await pickBox(p,{vals,label:lab,fmt:v=>`${v}/${n}`,msg:v=>`${v} dari ${n} hakim setuju. ${lab(v)}`,title:'⚖️ Buka kotak putusan hakim',desc:`${pg.name} sudah membela. Agar adil, putusan tidak dinilai koalisi lawan: pilih satu dari empat kotak tertutup berisi jumlah suara hakim yang setuju. Bebas jika minimal ${need} dari ${n} hakim setuju.`});
+  const ok=v>=need; award(pg,ok?4:1);
+  if(ok){ p.jail=false; p.jailTurns=0; log(`⚖️ Pembelaan ${mn(pg,p)} diterima: ${v} dari ${n} hakim setuju (minimal ${need}). ${pn(p)} bebas tanpa uang jaminan.`); toast('⚖️ Pembelaan diterima, bebas!','good'); }
+  else { log(`⚖️ Pembelaan ${mn(pg,p)} ditolak: hanya ${v} dari ${n} hakim setuju (minimal ${need}). Majelis tidak percaya soal kardus buah.`); toast('⚖️ Pembelaan ditolak','bad'); }
   S.busy=false; render();
 }
 const lines=t=>{ const a=String(t||'').split('\n').map(x=>x.trim()).filter(Boolean); return a.length?a:null; };
